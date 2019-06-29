@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import frame.AppFrame;
 import model.DrawingModel;
 import shapes.Shape;
+import shapes.point.Point;
 
 public class ModificationController {
 
@@ -27,10 +30,12 @@ public class ModificationController {
 		for(int i = 0; i<model.getShapes().size(); i++) {
 			if(model.getOne(i).isSelected() == true) ls.add(model.getOne(i));
 		}
-		
-		for(Shape s : ls) model.deleteShape(s);
-		obs.update(model.getOne(1), ls);
-		frame.getDrawingPanelView().repaint();
+		int delDialog = JOptionPane.showConfirmDialog (null, "Are you sure ?","Warning",JOptionPane.YES_NO_OPTION);
+		if(delDialog == JOptionPane.YES_OPTION) {
+			for(Shape s : ls) model.deleteShape(s);
+			obs.update(new Point(0, 0), new Point(0, 0));
+			frame.getDrawingPanelView().repaint();
+		}
 	}
 
 	public void modifyClicked(ActionEvent e) {
