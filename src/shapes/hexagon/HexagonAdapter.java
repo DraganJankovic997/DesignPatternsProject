@@ -93,7 +93,7 @@ public class HexagonAdapter extends SurfaceShape implements Movable {
 
 	@Override
 	public void selected(Graphics g) {
-		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

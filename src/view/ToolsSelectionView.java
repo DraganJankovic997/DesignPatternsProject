@@ -3,8 +3,10 @@ package view;
 import javax.swing.JPanel;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -18,9 +20,58 @@ public class ToolsSelectionView extends JPanel {
 	 * Create the panel.
 	 */
 	private JButton btnPoint, btnLine, btnSquare, btnRectangle, btnCircle, btnHexagon, btnSelect;
+	private JButton btnOuterColor;
+	private JButton btnInnerColor;
+	private JSeparator separator_1;
+	private Color obc, ibc;
+	
+	public void setBtnOuterColor(Color c) {
+		this.btnOuterColor.setBackground(c);
+		obc = c;
+	}
+	public void setBtnInnerColor(Color c) {
+		this.btnInnerColor.setBackground(c);
+		ibc = c;
+	}
+	
+	public Color getBtnOuterColor() {
+		return btnOuterColor.getBackground();
+	}
+	public Color getBtnInnerColor() {
+		return btnInnerColor.getBackground();
+	}
 	
 	public ToolsSelectionView() {
 		setLayout(new GridLayout(0, 1, 0, 0));
+		
+		btnOuterColor = new JButton("");
+		btnOuterColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Color t= JColorChooser.showDialog(null, "Choose outer color", obc);
+				if(t!=null){
+					obc=t;
+					setBtnOuterColor(obc);
+				}
+			}
+		});
+		setBtnOuterColor(Color.BLACK);
+		add(btnOuterColor);
+		
+		btnInnerColor = new JButton("");
+		btnInnerColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Color t= JColorChooser.showDialog(null, "Choose inner color", ibc);
+				if(t!=null){
+					ibc=t;
+					setBtnInnerColor(ibc);
+				}
+			}
+		});
+		setBtnInnerColor(Color.WHITE);
+		add(btnInnerColor);
+		
+		separator_1 = new JSeparator();
+		add(separator_1);
 		
 		btnPoint = new JButton("Point");
 		add(btnPoint);

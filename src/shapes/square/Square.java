@@ -89,7 +89,7 @@ public class Square extends SurfaceShape implements Movable {
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(this.getInnerColor());
+		g.setColor(this.getColor());
 		g.drawRect(upperLeftPoint.getX(), upperLeftPoint.getY(), width, width);
 		if(this.isSelected()) this.selected(g);
 	}
@@ -116,6 +116,12 @@ public class Square extends SurfaceShape implements Movable {
 		} else {
 			return false;
 		}
+	}
+	
+	@Override
+	public String toString() {
+		String s = upperLeftPoint.toString() + ", width = " + width + " |color" + this.getColor() + "|inner " + this.getInnerColor();
+		return s;
 	}
 
 }

@@ -87,10 +87,10 @@ public class Circle extends SurfaceShape implements Movable {
 
 	@Override
 	public void selected(Graphics g) {
-		Point p1 = new Point(centerPoint.getX() - radius, centerPoint.getY() - radius);
-		Point p2 = new Point(centerPoint.getX() - radius, centerPoint.getY() + radius);
-		Point p3 = new Point(centerPoint.getX() + radius, centerPoint.getY() - radius);
-		Point p4 = new Point(centerPoint.getX() + radius, centerPoint.getY() + radius);
+		Point p1 = new Point(centerPoint.getX() - radius, centerPoint.getY());
+		Point p2 = new Point(centerPoint.getX() + radius, centerPoint.getY());
+		Point p3 = new Point(centerPoint.getX(), centerPoint.getY() - radius);
+		Point p4 = new Point(centerPoint.getX(), centerPoint.getY() + radius);
 		p1.selected(g);
 		p2.selected(g);
 		p3.selected(g);

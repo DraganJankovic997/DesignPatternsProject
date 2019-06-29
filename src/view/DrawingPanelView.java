@@ -7,6 +7,7 @@ import java.util.Iterator;
 import javax.swing.JPanel;
 
 import model.DrawingModel;
+import shapes.SurfaceShape;
 
 public class DrawingPanelView extends JPanel {
 
@@ -31,9 +32,9 @@ public class DrawingPanelView extends JPanel {
 	public void paint(Graphics g) {
 		super.paint(g);
 		if(drawingModel != null) {
-			Iterator<shapes.Shape> i = drawingModel.getShapes().iterator();
-			while(i.hasNext()) {
-				i.next().draw(g);
+			for(shapes.Shape s : drawingModel.getShapes()) {
+				if(s instanceof SurfaceShape) ((SurfaceShape) s).fill(g);
+				s.draw(g);
 			}
 		}
 	}
