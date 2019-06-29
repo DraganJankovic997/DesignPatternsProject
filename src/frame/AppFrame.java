@@ -2,6 +2,7 @@ package frame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,9 @@ import controller.DrawingController;
 import controller.MenuController;
 import controller.ToolsController;
 import view.DrawingPanelView;
+import view.LogView;
+import view.MenuView;
+import view.ModificationView;
 import view.ToolsSelectionView;
 
 public class AppFrame extends JFrame {
@@ -23,6 +27,9 @@ public class AppFrame extends JFrame {
 	private JPanel contentPane;
 	private DrawingPanelView drawingPanelView = new DrawingPanelView();
 	private ToolsSelectionView toolsSelectionView = new ToolsSelectionView();
+	private MenuView menuView = new MenuView();
+	private ModificationView modificationView = new ModificationView();
+	private LogView logView = new LogView();
 	private DrawingController drawingController;
 	private ToolsController toolsController;
 	
@@ -112,6 +119,10 @@ public class AppFrame extends JFrame {
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(drawingPanelView);
 		getContentPane().add(toolsSelectionView, BorderLayout.WEST);
+		getContentPane().add(menuView, BorderLayout.NORTH);
+		getContentPane().add(modificationView, BorderLayout.EAST);
+		logView.setPreferredSize(new Dimension(100, 100));
+		getContentPane().add(logView, BorderLayout.SOUTH);
 	}
 
 }
