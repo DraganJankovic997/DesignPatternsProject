@@ -3,6 +3,8 @@ package frame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -22,6 +24,7 @@ public class AppFrame extends JFrame {
 	private DrawingPanelView drawingPanelView = new DrawingPanelView();
 	private ToolsSelectionView toolsSelectionView = new ToolsSelectionView();
 	private DrawingController drawingController;
+	private ToolsController toolsController;
 	
 	public DrawingPanelView getDrawingPanelView () {
 		return drawingPanelView;
@@ -29,6 +32,18 @@ public class AppFrame extends JFrame {
 	
 	public void setDrawingController(DrawingController c) {
 		this.drawingController = c;
+	}
+	
+	public void setToolsController(ToolsController t) {
+		this.toolsController = t;
+	}
+	
+	public ToolsController getToolsController() {
+		return toolsController;
+	}
+	
+	public ToolsSelectionView getToolsSelectionView() {
+		return toolsSelectionView;
 	}
 	
 
@@ -52,6 +67,48 @@ public class AppFrame extends JFrame {
 			}
 		});
 		
+		toolsSelectionView.getBtnPoint().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.pointSelected(e);
+			}
+		});
+		toolsSelectionView.getBtnLine().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.lineSelected(e);
+			}
+		});
+		toolsSelectionView.getBtnSquare().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.squareSelected(e);
+			}
+		});
+		toolsSelectionView.getBtnRectangle().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.rectangleSelected(e);
+			}
+		});
+		toolsSelectionView.getBtnCircle().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.circleSelected(e);
+			}
+		});
+		toolsSelectionView.getBtnHexagon().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.hexagonSelected(e);
+			}
+		});
+		toolsSelectionView.getBtnSelect().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				toolsController.selectSelected(e);
+			}
+		});
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(drawingPanelView);
 		getContentPane().add(toolsSelectionView, BorderLayout.WEST);

@@ -7,6 +7,8 @@ import javax.swing.SwingConstants;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 import javax.swing.JSeparator;
 
@@ -15,33 +17,94 @@ public class ToolsSelectionView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	private JButton btnPoint, btnLine, btnSquare, btnRectangle, btnCircle, btnHexagon, btnSelect;
+	
 	public ToolsSelectionView() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnPoint = new JButton("Point");
+		btnPoint = new JButton("Point");
 		add(btnPoint);
 		
-		JButton btnLine = new JButton("Line");
+		btnLine = new JButton("Line");
 		add(btnLine);
 		
-		JButton btnSquare = new JButton("Square");
+		btnSquare = new JButton("Square");
 		add(btnSquare);
 		
-		JButton btnRectangle = new JButton("Rectangle");
+		btnRectangle = new JButton("Rectangle");
 		add(btnRectangle);
 		
-		JButton btnCircle = new JButton("Circle");
+		btnCircle = new JButton("Circle");
 		add(btnCircle);
 		
-		JButton btnHexagon = new JButton("Hexagon");
+		btnHexagon = new JButton("Hexagon");
 		add(btnHexagon);
 		
 		JSeparator separator = new JSeparator();
 		add(separator);
 		
-		JButton btnSelect = new JButton("Select");
+		btnSelect = new JButton("Select");
 		add(btnSelect);
 
 	}
+
+	public JButton getBtnPoint() {
+		return btnPoint;
+	}
+
+	public void setBtnPoint(JButton btnPoint) {
+		this.btnPoint = btnPoint;
+	}
+
+	public JButton getBtnLine() {
+		return btnLine;
+	}
+
+	public void setBtnLine(JButton btnLine) {
+		this.btnLine = btnLine;
+	}
+
+	public JButton getBtnSquare() {
+		return btnSquare;
+	}
+
+	public void setBtnSquare(JButton btnSquare) {
+		this.btnSquare = btnSquare;
+	}
+
+	public JButton getBtnRectangle() {
+		return btnRectangle;
+	}
+
+	public void setBtnRectangle(JButton btnRectangle) {
+		this.btnRectangle = btnRectangle;
+	}
+
+	public JButton getBtnCircle() {
+		return btnCircle;
+	}
+
+	public void setBtnCircle(JButton btnCircle) {
+		this.btnCircle = btnCircle;
+	}
+
+	public JButton getBtnHexagon() {
+		return btnHexagon;
+	}
+
+	public void setBtnHexagon(JButton btnHexagon) {
+		this.btnHexagon = btnHexagon;
+	}
+
+	public JButton getBtnSelect() {
+		return btnSelect;
+	}
+
+	public void setBtnSelect(JButton btnSelect) {
+		this.btnSelect = btnSelect;
+	}
+	
+	
+	
 
 }
