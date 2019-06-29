@@ -19,31 +19,38 @@ public class ToolsController {
 	}
 	
 	public void pointSelected(ActionEvent e) {
-		selection = 1;
+		if(selection != 1) selection = 1;
+		else selection = 0;
 		highlightSelectedButton();
 	}
 	public void lineSelected(ActionEvent e) {
-		selection = 2;
+		if(selection != 2) selection = 2;
+		else selection = 0;
 		highlightSelectedButton();
 	}
 	public void squareSelected(ActionEvent e) {
-		selection = 3;
+		if(selection != 3) selection = 3;
+		else selection = 0;
 		highlightSelectedButton();
 	}
 	public void rectangleSelected(ActionEvent e) {
-		selection = 4;
+		if(selection != 4) selection = 4;
+		else selection = 0;
 		highlightSelectedButton();
 	}
 	public void circleSelected(ActionEvent e) {
-		selection = 5;
+		if(selection != 5) selection = 5;
+		else selection = 0;
 		highlightSelectedButton();
 	}
 	public void hexagonSelected(ActionEvent e) {
-		selection = 6;	
+		if(selection != 6) selection = 6;
+		else selection = 0;
 		highlightSelectedButton();
 	}
 	public void selectSelected(ActionEvent e) {
-		selection = 7;
+		if(selection != 7) selection = 7;
+		else selection = 0;
 		highlightSelectedButton();
 	}
 	

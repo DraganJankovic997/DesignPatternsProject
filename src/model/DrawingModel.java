@@ -8,7 +8,6 @@ public class DrawingModel {
 
 	private ArrayList<Shape> shapesList = new ArrayList<Shape>();
 	
-	
 	public ArrayList<Shape> getShapes(){
 		return shapesList;
 	}

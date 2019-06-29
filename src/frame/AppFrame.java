@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 
 import controller.DrawingController;
 import controller.MenuController;
+import controller.ModificationController;
 import controller.ToolsController;
 import view.DrawingPanelView;
 import view.LogView;
@@ -32,6 +33,7 @@ public class AppFrame extends JFrame {
 	private LogView logView = new LogView();
 	private DrawingController drawingController;
 	private ToolsController toolsController;
+	private ModificationController modificationController;
 	
 	public DrawingPanelView getDrawingPanelView () {
 		return drawingPanelView;
@@ -45,6 +47,10 @@ public class AppFrame extends JFrame {
 		this.toolsController = t;
 	}
 	
+	public void setModificationController(ModificationController m) {
+		this.modificationController = m;
+	}
+	
 	public ToolsController getToolsController() {
 		return toolsController;
 	}
@@ -53,6 +59,9 @@ public class AppFrame extends JFrame {
 		return toolsSelectionView;
 	}
 	
+	public ModificationController getModificationController() {
+		return modificationController;
+	}
 
 	/**
 	 * Create the frame.
@@ -116,6 +125,43 @@ public class AppFrame extends JFrame {
 				toolsController.selectSelected(e);
 			}
 		});
+		modificationView.getBtnModify().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				modificationController.modifyClicked(e);
+			}
+		});
+		modificationView.getBtnDelete().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				modificationController.deleteClicked(e);
+			}
+		});
+		modificationView.getBtnBringToBack().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				modificationController.bringToBackClicked(e);
+			}
+		});
+		modificationView.getBtnBack().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				modificationController.backClicked(e);
+			}
+		});
+		modificationView.getBtnFront().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				modificationController.frontClicked(e);
+			}
+		});
+		modificationView.getBtnBringToFront().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				modificationController.bringToFrontClicked(e);
+			}
+		});
+		
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(drawingPanelView);
 		getContentPane().add(toolsSelectionView, BorderLayout.WEST);
@@ -123,6 +169,11 @@ public class AppFrame extends JFrame {
 		getContentPane().add(modificationView, BorderLayout.EAST);
 		logView.setPreferredSize(new Dimension(100, 100));
 		getContentPane().add(logView, BorderLayout.SOUTH);
+	}
+
+	public ModificationView getModificationView() {
+		return modificationView;
+		
 	}
 
 }

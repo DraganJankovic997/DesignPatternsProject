@@ -101,4 +101,9 @@ public class HexagonAdapter extends SurfaceShape implements Movable {
 		return hexagon.doesContain(x, y);
 	}
 	
+	@Override
+	public String toString() {
+		return "Hexagon selected = " + this.isSelected();
+	}
+	
 }

@@ -10,30 +10,102 @@ public class ModificationView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	private JButton btnModify, btnDelete, btnBringToBack, btnBack, btnFront, btnBringToFront;
+	
+	
 	public ModificationView() {
 		setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnModify = new JButton("Modify");
+		btnModify = new JButton("Modify");
+		getBtnModify().setEnabled(false);
 		add(btnModify);
 		
-		JButton btnDelete = new JButton("Delete");
+		btnDelete = new JButton("Delete");
+		getBtnDelete().setEnabled(false);
 		add(btnDelete);
 		
 		JSeparator separator = new JSeparator();
 		add(separator);
 		
-		JButton btnBringtoback = new JButton("BringToBack");
-		add(btnBringtoback);
+		btnBringToBack = new JButton("BringToBack");
+		getBtnBringToBack().setEnabled(false);
+		add(btnBringToBack);
 		
-		JButton btnBack = new JButton("Back");
+		btnBack = new JButton("Back");
+		getBtnBack().setEnabled(false);
 		add(btnBack);
 		
-		JButton btnFront = new JButton("Front");
+		btnFront = new JButton("Front");
+		getBtnFront().setEnabled(false);
 		add(btnFront);
 		
-		JButton btnBringtofront = new JButton("BringToFront");
-		add(btnBringtofront);
-
+		btnBringToFront = new JButton("BringToFront");
+		getBtnBringToFront().setEnabled(false);
+		add(btnBringToFront);
+		
+		
 	}
 
+
+	public JButton getBtnModify() {
+		return btnModify;
+	}
+
+
+	public void setBtnModify(JButton btnModify) {
+		this.btnModify = btnModify;
+	}
+
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+
+	public void setBtnDelete(JButton btnDelete) {
+		this.btnDelete = btnDelete;
+	}
+
+
+	public JButton getBtnBringToBack() {
+		return btnBringToBack;
+	}
+
+
+	public void setBtnBringToBack(JButton btnBringToBack) {
+		this.btnBringToBack = btnBringToBack;
+	}
+
+
+	public JButton getBtnBack() {
+		return btnBack;
+	}
+
+
+	public void setBtnBack(JButton btnBack) {
+		this.btnBack = btnBack;
+	}
+
+
+	public JButton getBtnFront() {
+		return btnFront;
+	}
+
+
+	public void setBtnFront(JButton btnFront) {
+		this.btnFront = btnFront;
+	}
+
+
+	public JButton getBtnBringToFront() {
+		return btnBringToFront;
+	}
+
+
+	public void setBtnBringToFront(JButton btnBringToFront) {
+		this.btnBringToFront = btnBringToFront;
+	}
+	
+	
+	
 }

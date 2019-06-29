@@ -2,8 +2,9 @@ package shapes;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Observable;
 
-public abstract class Shape implements Comparable<Shape>  {
+public abstract class Shape extends Observable implements Comparable<Shape>  {
 
 	private Color color = Color.BLACK;
 	private boolean selected = false;
@@ -26,6 +27,8 @@ public abstract class Shape implements Comparable<Shape>  {
 	}
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+		setChanged();
+		notifyObservers();
 	}
 	
 	public abstract boolean equals(Shape s);

@@ -3,6 +3,7 @@ package view;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.JSeparator;
 
 public class MenuView extends JPanel {
 
@@ -20,6 +21,15 @@ public class MenuView extends JPanel {
 		
 		JButton btnImport = new JButton("Import");
 		add(btnImport);
+		
+		JSeparator separator = new JSeparator();
+		add(separator);
+		
+		JButton btnUndo = new JButton("Undo");
+		add(btnUndo);
+		
+		JButton btnRedo = new JButton("Redo");
+		add(btnRedo);
 
 	}
 
