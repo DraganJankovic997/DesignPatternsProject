@@ -121,12 +121,14 @@ public class DrawingController {
 			}
 		} else if(s == 7) {
 			boolean selbool = false;
+			Shape selectedShape = null;
 			for(Shape sha: model.getShapes()) {
 				if(sha.contains(e.getX(), e.getY())) {
-					sha.setSelected(!sha.isSelected());
+					selectedShape = sha;
 					selbool = true;
 				}
 			}
+			selectedShape.setSelected(!selectedShape.isSelected());
 			if(selbool == false) {
 				unselectAll();
 			}

@@ -79,7 +79,12 @@ public class AppFrame extends JFrame {
 			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				drawingController.mouseClicked(arg0);
+				try {
+					drawingController.mouseClicked(arg0);
+				} catch(Exception ex) {
+					drawingController.unselectAll();
+					getDrawingPanelView().repaint();
+				}
 			}
 		});
 		

@@ -9,6 +9,10 @@ import javax.swing.JOptionPane;
 
 import frame.AppFrame;
 import model.DrawingModel;
+import position.BackCommand;
+import position.BringToBackCommand;
+import position.BringToFrontCommand;
+import position.FrontCommand;
 import shapes.Command;
 import shapes.Shape;
 import shapes.circle.Circle;
@@ -66,23 +70,73 @@ public class ModificationController {
 	}
 
 	public void bringToBackClicked(ActionEvent e) {
-		// TODO Auto-generated method stub
+		Shape sh = null;
+		for(int i = 0; i<model.getShapes().size()-1; i++) if(model.getOne(i).isSelected() == true) sh = model.getOne(i);
 		
+		BringToBackCommand cm = new BringToBackCommand(model, sh);
+		try {
+			int op = model.getShapes().indexOf(sh);
+			cm.execute();
+			int np = model.getShapes().indexOf(sh);
+			System.out.println(op + " ----> " + np);
+		} catch (Exception ex) {
+			if(model.getShapes().indexOf(sh) == 0)JOptionPane.showMessageDialog(frame, "Shape is already on bottom");
+			else JOptionPane.showMessageDialog(frame, "Bringing to bottom error");
+		}
+		frame.getDrawingPanelView().repaint();
 	}
 
 	public void backClicked(ActionEvent e) {
-		// TODO Auto-generated method stub
+		Shape sh = null;
+		for(int i = 0; i<model.getShapes().size()-1; i++) if(model.getOne(i).isSelected() == true) sh = model.getOne(i);
 		
+		BackCommand cm = new BackCommand(model, sh);
+		try {
+			int op = model.getShapes().indexOf(sh);
+			cm.execute();
+			int np = model.getShapes().indexOf(sh);
+			System.out.println(op + " ----> " + np);
+		} catch (Exception ex) {
+			if(model.getShapes().indexOf(sh) == 0)JOptionPane.showMessageDialog(frame, "Shape is already on bottom");
+			else JOptionPane.showMessageDialog(frame, "To bottom error");
+		}
+		frame.getDrawingPanelView().repaint();
 	}
 
 	public void frontClicked(ActionEvent e) {
-		// TODO Auto-generated method stub
+		Shape sh = null;
+		for(int i = 0; i<model.getShapes().size()-1; i++) if(model.getOne(i).isSelected() == true) sh = model.getOne(i);
 		
+		FrontCommand cm = new FrontCommand(model, sh);
+		try {
+			int op = model.getShapes().indexOf(sh);
+			cm.execute();
+			int np = model.getShapes().indexOf(sh);
+			System.out.println(op + " ----> " + np);
+		} catch (Exception ex) {
+			if(model.getShapes().indexOf(sh) == model.getShapes().size()-1)
+				JOptionPane.showMessageDialog(frame, "Shape is already on top");
+			else JOptionPane.showMessageDialog(frame, "Bring to top error");
+		}
+		frame.getDrawingPanelView().repaint();
 	}
 
 	public void bringToFrontClicked(ActionEvent e) {
-		// TODO Auto-generated method stub
+		Shape sh = null;
+		for(int i = 0; i<model.getShapes().size()-1; i++) if(model.getOne(i).isSelected() == true) sh = model.getOne(i);
 		
+		BringToFrontCommand cm = new BringToFrontCommand(model, sh);
+		try {
+			int op = model.getShapes().indexOf(sh);
+			cm.execute();
+			int np = model.getShapes().indexOf(sh);
+			System.out.println(op + " ----> " + np);
+		} catch (Exception ex) {
+			if(model.getShapes().indexOf(sh) == model.getShapes().size()-1)
+				JOptionPane.showMessageDialog(frame, "Shape is already on top");
+			else JOptionPane.showMessageDialog(frame, "To top error");
+		}
+		frame.getDrawingPanelView().repaint();
 	}
 	
 	
