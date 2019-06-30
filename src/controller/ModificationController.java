@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import dialogs.DialogPoint;
 import frame.AppFrame;
 import model.DrawingModel;
 import position.BackCommand;
@@ -23,6 +24,7 @@ import shapes.line.DeleteLine;
 import shapes.line.Line;
 import shapes.point.DeletePoint;
 import shapes.point.Point;
+import shapes.point.UpdatePoint;
 import shapes.rectangle.DeleteRectangle;
 import shapes.rectangle.Rectangle;
 import shapes.square.DeleteSquare;
@@ -65,8 +67,25 @@ public class ModificationController {
 	}
 
 	public void modifyClicked(ActionEvent e) {
-		// TODO Auto-generated method stub
+		Shape sel = null;
+		Command cm = null;
 		
+		for (Shape sh : model.getShapes()) {
+			if(sh.isSelected() == true) sel = sh;
+		}
+		
+		if(sel instanceof Point) {
+			DialogPoint dialog = new DialogPoint();
+			dialog.setPoint((Point) sel);
+			dialog.setVisible(true);
+			System.out.println("updated = " + dialog.getUpdated());
+			if(dialog.getUpdated() == true) {
+				cm = new UpdatePoint((Point) sel, dialog.getPoint());
+				System.out.println("updated = " + dialog.getUpdated());
+			}
+		} 
+		System.out.println(model.getShapes());
+		frame.getDrawingPanelView().repaint();
 	}
 
 	public void bringToBackClicked(ActionEvent e) {
