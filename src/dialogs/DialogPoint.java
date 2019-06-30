@@ -28,7 +28,7 @@ public class DialogPoint extends JDialog {
 	private JTextField tfX;
 	private JTextField tfY;
 	private JButton btnOuter;
-	private Point p;
+	private Point oldPoint, newPoint;
 	private Color outerColor;
 	private boolean updated = false;
 
@@ -131,12 +131,9 @@ public class DialogPoint extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						try {
-							int x = Integer.parseInt(tfX.getText());
-							int y = Integer.parseInt(tfY.getText());
-							p = new Point(x, y, outerColor);
-							p.setSelected(true);
+							newPoint = new Point(Integer.parseInt(tfX.getText()), Integer.parseInt(tfY.getText()), outerColor);
+							newPoint.setSelected(true);
 							updated = true;
-							System.out.println(p + " -> " + updated);
 							setVisible(false);
 							dispose();
 						} catch (Exception ex) {
@@ -163,14 +160,14 @@ public class DialogPoint extends JDialog {
 	}
 	
 	public Point getPoint() {
-		return p;
+		return newPoint;
 	}
 	public void setPoint(Point po) {
-		this.p = po;
-		this.outerColor = p.getColor();
+		this.oldPoint = po;
+		this.outerColor = oldPoint.getColor();
 		this.btnOuter.setBackground(outerColor);
-		this.tfX.setText(String.valueOf(p.getX()));
-		this.tfY.setText(String.valueOf(p.getY()));
+		this.tfX.setText(String.valueOf(oldPoint.getX()));
+		this.tfY.setText(String.valueOf(oldPoint.getY()));
 	}
 	
 	public boolean getUpdated() {

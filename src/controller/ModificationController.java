@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import dialogs.DialogPoint;
+import dialogs.*;
 import frame.AppFrame;
 import model.DrawingModel;
 import position.BackCommand;
@@ -18,17 +18,21 @@ import shapes.Command;
 import shapes.Shape;
 import shapes.circle.Circle;
 import shapes.circle.DeleteCircle;
+import shapes.circle.UpdateCircle;
 import shapes.hexagon.DeleteHexagonAdapter;
 import shapes.hexagon.HexagonAdapter;
 import shapes.line.DeleteLine;
 import shapes.line.Line;
+import shapes.line.UpdateLine;
 import shapes.point.DeletePoint;
 import shapes.point.Point;
 import shapes.point.UpdatePoint;
 import shapes.rectangle.DeleteRectangle;
 import shapes.rectangle.Rectangle;
+import shapes.rectangle.UpdateRectangle;
 import shapes.square.DeleteSquare;
 import shapes.square.Square;
+import shapes.square.UpdateSquare;
 
 public class ModificationController {
 
@@ -76,15 +80,47 @@ public class ModificationController {
 		
 		if(sel instanceof Point) {
 			DialogPoint dialog = new DialogPoint();
+			dialog.setModal(true);
 			dialog.setPoint((Point) sel);
 			dialog.setVisible(true);
-			System.out.println("updated = " + dialog.getUpdated());
 			if(dialog.getUpdated() == true) {
 				cm = new UpdatePoint((Point) sel, dialog.getPoint());
-				System.out.println("updated = " + dialog.getUpdated());
 			}
-		} 
-		System.out.println(model.getShapes());
+		} else if (sel instanceof Line) {
+			DialogLine dialog = new DialogLine();
+			dialog.setModal(true);
+			dialog.setLine((Line) sel);
+			dialog.setVisible(true);
+			if(dialog.getUpdated() == true) {
+				cm = new UpdateLine((Line) sel, dialog.getLine());
+			}
+		}
+		else if (sel instanceof Square) {
+			DialogSquare dialog = new DialogSquare();
+			dialog.setModal(true);
+			dialog.setSquare((Square) sel);
+			dialog.setVisible(true);
+			if(dialog.getUpdated() == true) {
+				cm = new UpdateSquare((Square) sel, dialog.getSquare());
+			}
+		} else if (sel instanceof Rectangle) {
+			DialogRectangle dialog = new DialogRectangle();
+			dialog.setModal(true);
+			dialog.setRectangle((Rectangle) sel);
+			dialog.setVisible(true);
+			if(dialog.getUpdated() == true) {
+				cm = new UpdateRectangle((Rectangle) sel, dialog.getRectangle());
+			}
+		} else if (sel instanceof Circle) {
+			DialogCircle dialog = new DialogCircle();
+			dialog.setModal(true);
+			dialog.setCircle((Circle) sel);
+			dialog.setVisible(true);
+			if(dialog.getUpdated() == true) {
+				cm = new UpdateCircle((Circle) sel, dialog.getCircle());
+			}
+		}
+		cm.execute();
 		frame.getDrawingPanelView().repaint();
 	}
 
