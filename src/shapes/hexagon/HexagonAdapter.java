@@ -93,9 +93,10 @@ public class HexagonAdapter extends SurfaceShape implements Movable {
 
 	@Override
 	public void selected(Graphics g) {
-		
+		hexagon.setAreaColor(Color.BLUE);
 	}
 
+	//doesContain ne radi ?
 	@Override
 	public boolean contains(int x, int y) {
 		return hexagon.doesContain(x, y);
