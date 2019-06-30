@@ -13,8 +13,7 @@ public class UpdateHexagonAdapter implements Command {
 	
 	@Override
 	public void execute() {
-		oldHa = new HexagonAdapter(curHa.getHexagon(), curHa.getColor(), curHa.getInnerColor());
-		oldHa.setSelected(curHa.isSelected());
+		oldHa = (HexagonAdapter) curHa.clone();
 		curHa.setHexagon(newHa.getHexagon());
 		curHa.setColor(newHa.getColor());
 		curHa.setInnerColor(newHa.getInnerColor());

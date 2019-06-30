@@ -5,10 +5,11 @@ import java.awt.Graphics;
 
 import hexagon.Hexagon;
 import shapes.Movable;
+import shapes.Prototype;
 import shapes.Shape;
 import shapes.SurfaceShape;
 
-public class HexagonAdapter extends SurfaceShape implements Movable {
+public class HexagonAdapter extends SurfaceShape implements Movable, Prototype {
 
 	private Hexagon hexagon;
 	
@@ -105,6 +106,14 @@ public class HexagonAdapter extends SurfaceShape implements Movable {
 	@Override
 	public String toString() {
 		return "Hexagon selected = " + this.isSelected();
+	}
+
+	@Override
+	public Shape clone() {
+		Hexagon h = new Hexagon(this.getHexagon().getX(), this.getHexagon().getX(), this.getHexagon().getR());
+		HexagonAdapter ha = new HexagonAdapter(h, this.getColor(), this.getInnerColor());
+		ha.setSelected(this.isSelected());
+		return ha;
 	}
 	
 }

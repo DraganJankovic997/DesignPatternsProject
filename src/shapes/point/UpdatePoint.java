@@ -13,8 +13,7 @@ public class UpdatePoint implements Command {
 	
 	@Override
 	public void execute() {
-		this.oldPoint = new Point(currentPoint.getX(), currentPoint.getY(), currentPoint.getColor());
-		oldPoint.setSelected(currentPoint.isSelected());
+		oldPoint = (Point) currentPoint.clone();
 		currentPoint.setX(newPoint.getX());
 		currentPoint.setY(newPoint.getY());
 		currentPoint.setColor(newPoint.getColor());

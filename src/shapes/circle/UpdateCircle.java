@@ -13,8 +13,7 @@ public class UpdateCircle implements Command {
 	
 	@Override
 	public void execute() {
-		oldC = new Circle(curC.getCenterPoint(), curC.getRadius(), curC.getColor(), curC.getInnerColor());
-		oldC.setSelected(curC.isSelected());
+		oldC = (Circle) curC.clone();
 		curC.setCenterPoint(newC.getCenterPoint());
 		curC.setRadius(newC.getRadius());
 		curC.setColor(newC.getColor());

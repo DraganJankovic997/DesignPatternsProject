@@ -4,13 +4,14 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import shapes.Movable;
+import shapes.Prototype;
 import shapes.Shape;
 import shapes.SurfaceShape;
 import shapes.line.Line;
 import shapes.point.Point;
 import shapes.rectangle.Rectangle;
 
-public class Square extends SurfaceShape implements Movable {
+public class Square extends SurfaceShape implements Movable, Prototype {
 
 	private Point upperLeftPoint;
 	private int width;
@@ -122,6 +123,13 @@ public class Square extends SurfaceShape implements Movable {
 	public String toString() {
 		String s = upperLeftPoint.toString() + ", width = " + width + " |color" + this.getColor() + "|inner " + this.getInnerColor();
 		return s;
+	}
+
+	@Override
+	public Shape clone() {
+		Square sq = new Square(this.getUpperLeftPoint(), this.getWidth(), this.getColor(), this.getInnerColor());
+		sq.setSelected(this.isSelected());
+		return sq;
 	}
 
 }

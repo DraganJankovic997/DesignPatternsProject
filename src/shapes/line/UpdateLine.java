@@ -14,8 +14,7 @@ public class UpdateLine implements Command{
 	
 	@Override
 	public void execute() {
-		oldLine = new Line(currentLine.getStartPoint(), currentLine.getEndPoint(), currentLine.getColor());
-		oldLine.setSelected(currentLine.isSelected());
+		oldLine = (Line) currentLine.clone();
 		currentLine.setStartPoint(newLine.getStartPoint());
 		currentLine.setEndPoint(newLine.getEndPoint());
 		currentLine.setColor(newLine.getColor());

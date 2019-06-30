@@ -4,12 +4,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import shapes.Movable;
+import shapes.Prototype;
 import shapes.Shape;
 import shapes.SurfaceShape;
 import shapes.line.Line;
 import shapes.point.Point;
 
-public class Circle extends SurfaceShape implements Movable {
+public class Circle extends SurfaceShape implements Movable, Prototype {
 
 	private Point centerPoint;
 	private int radius;
@@ -115,6 +116,13 @@ public class Circle extends SurfaceShape implements Movable {
 			}
 			else return false;
 		} else return false;
+	}
+
+	@Override
+	public Shape clone() {
+		Circle c = new Circle(this.getCenterPoint(), this.getRadius(), this.getColor(), this.getInnerColor());
+		c.setSelected(this.isSelected());
+		return c;
 	}
 
 }

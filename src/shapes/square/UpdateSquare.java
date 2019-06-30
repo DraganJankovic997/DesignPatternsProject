@@ -13,8 +13,7 @@ public class UpdateSquare implements Command {
 	
 	@Override
 	public void execute() {
-		oldS = new Square(curS.getUpperLeftPoint(), curS.getWidth(), curS.getColor(), curS.getInnerColor());
-		oldS.setSelected(curS.isSelected());
+		oldS = (Square) curS.clone();
 		curS.setUpperLeftPoint(newS.getUpperLeftPoint());
 		curS.setWidth(newS.getWidth());
 		curS.setColor(newS.getColor());

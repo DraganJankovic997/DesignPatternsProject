@@ -13,8 +13,7 @@ public class UpdateRectangle implements Command {
 	
 	@Override
 	public void execute() {
-		oldR = new Rectangle(curR.getUpperLeftPoint(), curR.getHeight(), curR.getWidth(), curR.getColor(), curR.getInnerColor());
-		oldR.setSelected(curR.isSelected());
+		oldR = (Rectangle) curR.clone();
 		curR.setUpperLeftPoint(newR.getUpperLeftPoint());
 		curR.setHeight(newR.getHeight());
 		curR.setWidth(newR.getWidth());

@@ -5,10 +5,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import shapes.Movable;
+import shapes.Prototype;
 import shapes.Shape;
 import shapes.point.Point;
 
-public class Line extends Shape implements Movable {
+public class Line extends Shape implements Movable, Prototype {
 
 	private Point startPoint;
 	private Point endPoint;
@@ -109,6 +110,13 @@ public class Line extends Shape implements Movable {
 			}
 			else return false;
 		} else return false;
+	}
+
+	@Override
+	public Shape clone() {
+		Line l = new Line(this.getStartPoint(), this.getEndPoint(), this.getColor());
+		l.setSelected(this.isSelected());
+		return l;
 	}
 
 }

@@ -9,8 +9,9 @@ import shapes.SurfaceShape;
 import shapes.circle.Circle;
 import shapes.line.Line;
 import shapes.point.Point;
+import shapes.Prototype;
 
-public class Rectangle extends SurfaceShape implements Movable {
+public class Rectangle extends SurfaceShape implements Movable, Prototype {
 
 	private Point upperLeftPoint;
 	private int height;
@@ -130,6 +131,13 @@ public class Rectangle extends SurfaceShape implements Movable {
 		} else {
 			return false;
 		}
+	}
+
+	@Override
+	public Shape clone() {
+		Rectangle r = new Rectangle(this.getUpperLeftPoint(), this.getHeight(), this.getWidth(), this.getColor(), this.getInnerColor());
+		r.setSelected(this.isSelected());
+		return r;
 	}
 
 }

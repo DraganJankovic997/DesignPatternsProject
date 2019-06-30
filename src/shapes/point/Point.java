@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import shapes.Movable;
+import shapes.Prototype;
 import shapes.Shape;
 
-public class Point extends Shape implements Movable {
+public class Point extends Shape implements Movable, Prototype {
 
 	private int x;
 	private int y;
@@ -99,6 +100,12 @@ public class Point extends Shape implements Movable {
 	public void moveFor(int x, int y) {
 		this.setX(this.getX() + x);
 		this.setY(this.getY() + y);
+	}
+	@Override
+	public Shape clone() {
+		Point p = new Point(this.getX(), this.getY(), this.getColor());
+		p.setSelected(this.isSelected());
+		return p;
 	}
 
 }
