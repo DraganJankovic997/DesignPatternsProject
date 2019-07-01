@@ -28,8 +28,7 @@ public class LogFileLoader implements AssetLoader {
 	@Override
 	public void loadFile(File file) {
 		File f = file;
-		
-		if(f.getName().split("\\.")[0].equals("log")) {
+		if(f.getName().split("\\.")[1].equals("log")) {
 			try {
 				BufferedReader b = new BufferedReader(new FileReader(f));
 				LogInput l = new LogInput();
@@ -44,8 +43,10 @@ public class LogFileLoader implements AssetLoader {
 					if(l.getInsert() == true) {
 						ToCommand ic = new ToCommand(model, frame);
 						Command c = ic.transform(line);
+						c.execute();
 						frame.getDrawingPanelView().repaint();
 					}
+					frame.getLogView().getTextPane().setText(finalLog);
 				}
 			} catch(Exception ex) {
 				JOptionPane.showMessageDialog(null, "Error while reading.");
