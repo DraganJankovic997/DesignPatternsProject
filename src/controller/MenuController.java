@@ -3,9 +3,15 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.io.Serializable;
 import java.util.Stack;
-import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+import files.AssetLoader;
+import files.FileLoader;
+import files.LogFileLoader;
+import files.SerializableLoader;
 import frame.AppFrame;
 import model.DrawingModel;
 import shapes.Command;
@@ -101,15 +107,54 @@ public class MenuController implements Serializable {
 	}
 	
 	public void openFile(ActionEvent e) {
-		
+		JFileChooser fc = new JFileChooser();
+		fc.setDialogTitle("Open log file");
+		fc.setFileFilter(new FileNameExtensionFilter("serialized file (.ser)", "ser"));
+        fc.setFileFilter(new FileNameExtensionFilter("log file (.log)", "log"));
+		int ch = fc.showOpenDialog(null);
+		AssetLoader fl = null;
+		if (ch == JFileChooser.APPROVE_OPTION) {
+			if(fc.getFileFilter().getDescription().equals("serialized file (.ser)")){
+        		fl=new SerializableLoader(model,frame);
+        	}else {
+        		fl=new LogFileLoader(model,frame);
+        	}
+			FileLoader loader = new FileLoader(fl);
+			loader.loadFile(fc.getSelectedFile());
+	    	frame.getDrawingPanelView().repaint();
+		}
+
 	}
 
 	public void saveFile(ActionEvent e) {
-		
+		JFileChooser fc = new JFileChooser();
+		fc.setDialogTitle("Save log file");
+		fc.setFileFilter(new FileNameExtensionFilter("serialized file (.ser)", "ser"));
+        fc.setFileFilter(new FileNameExtensionFilter("log file (.log)", "log"));
+		int ch = fc.showOpenDialog(null);
+		AssetLoader fl = null;
+		if (ch == JFileChooser.APPROVE_OPTION) {
+			if(fc.getFileFilter().getDescription().equals("serialized file (.ser)")){
+        		fl=new SerializableLoader(model,frame);
+        	}else {
+        		fl=new LogFileLoader(model,frame);
+        	}
+			
+			FileLoader loader = new FileLoader(fl);
+			loader.saveFile(fc.getSelectedFile());
+		}
 	}
 	
 	public void newFile(ActionEvent e) {
+		model.getShapes().clear();
+		undoStack.clear();
+		undoLog.clear();
+		redoStack.clear();
+		redoLog.clear();
 		
+		frame.getLogView().getTextPane().setText("");
+		updateUndoRedoButtons();
+		frame.getDrawingPanelView().repaint();
 	}
 	
 	
