@@ -10,6 +10,7 @@ public class ModificationView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	private static final long serialVersionUID = 3057856167490121150L;
 	private JButton btnModify, btnDelete, btnBringToBack, btnBack, btnFront, btnBringToFront;
 	
 	

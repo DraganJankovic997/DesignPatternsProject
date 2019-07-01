@@ -8,6 +8,7 @@ import shapes.Shape;
 
 public class BringToBackCommand implements Command {
 
+	private static final long serialVersionUID = -9062790313518987403L;
 	private DrawingModel model;
 	private Shape shape;
 	private int oldIndex;

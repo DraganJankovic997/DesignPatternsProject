@@ -5,6 +5,7 @@ import shapes.Command;
 
 public class DeleteHexagonAdapter implements Command {
 
+	private static final long serialVersionUID = 1051419197990174860L;
 	private DrawingModel model;
 	private HexagonAdapter ha;
 	

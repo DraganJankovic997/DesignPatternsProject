@@ -4,6 +4,7 @@ import shapes.Command;
 
 public class UpdatePoint implements Command {
 
+	private static final long serialVersionUID = 5051409597490174150L;
 	private Point oldPoint, newPoint, currentPoint;
 	
 	public UpdatePoint(Point cp, Point np) {

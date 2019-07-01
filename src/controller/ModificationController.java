@@ -1,9 +1,12 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Stack;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -34,12 +37,17 @@ import shapes.square.DeleteSquare;
 import shapes.square.Square;
 import shapes.square.UpdateSquare;
 
-public class ModificationController {
+public class ModificationController implements Serializable {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4670015073278902007L;
 	private DrawingModel model;
 	private AppFrame frame;
 	private ShapeObserverController obs;
+
 	
 	public ModificationController(DrawingModel d, AppFrame f) {
 		this.frame = f;
@@ -62,8 +70,9 @@ public class ModificationController {
 				else if (s instanceof Rectangle) cm = new DeleteRectangle(model, (Rectangle)s);
 				else if (s instanceof Circle) cm = new DeleteCircle(model, (Circle)s);
 				else if (s instanceof HexagonAdapter) cm = new DeleteHexagonAdapter(model, (HexagonAdapter)s);
-				
-				 cm.execute();
+				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, s, null)); 
+				frame.getMenuController().LogCommand(cm, true, s, null);
+				cm.execute();
 			}
 			obs.update(new Point(0, 0), new Point(0, 0));
 			frame.getDrawingPanelView().repaint();
@@ -85,6 +94,8 @@ public class ModificationController {
 			dialog.setVisible(true);
 			if(dialog.getUpdated() == true) {
 				cm = new UpdatePoint((Point) sel, dialog.getPoint());
+				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getPoint())); 
+				frame.getMenuController().LogCommand(cm, true, sel, dialog.getPoint());
 			}
 		} else if (sel instanceof Line) {
 			DialogLine dialog = new DialogLine();
@@ -93,6 +104,8 @@ public class ModificationController {
 			dialog.setVisible(true);
 			if(dialog.getUpdated() == true) {
 				cm = new UpdateLine((Line) sel, dialog.getLine());
+				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getLine())); 
+				frame.getMenuController().LogCommand(cm, true, sel, dialog.getLine());
 			}
 		}
 		else if (sel instanceof Square) {
@@ -102,6 +115,8 @@ public class ModificationController {
 			dialog.setVisible(true);
 			if(dialog.getUpdated() == true) {
 				cm = new UpdateSquare((Square) sel, dialog.getSquare());
+				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getSquare())); 
+				frame.getMenuController().LogCommand(cm, true, sel, dialog.getSquare());
 			}
 		} else if (sel instanceof Rectangle) {
 			DialogRectangle dialog = new DialogRectangle();
@@ -110,6 +125,8 @@ public class ModificationController {
 			dialog.setVisible(true);
 			if(dialog.getUpdated() == true) {
 				cm = new UpdateRectangle((Rectangle) sel, dialog.getRectangle());
+				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getRectangle())); 
+				frame.getMenuController().LogCommand(cm, true, sel, dialog.getRectangle());
 			}
 		} else if (sel instanceof Circle) {
 			DialogCircle dialog = new DialogCircle();
@@ -118,6 +135,8 @@ public class ModificationController {
 			dialog.setVisible(true);
 			if(dialog.getUpdated() == true) {
 				cm = new UpdateCircle((Circle) sel, dialog.getCircle());
+				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getCircle())); 
+				frame.getMenuController().LogCommand(cm, true, sel, dialog.getCircle());
 			}
 		}
 		cm.execute();

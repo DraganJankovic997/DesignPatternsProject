@@ -8,6 +8,7 @@ import shapes.Shape;
 
 public class FrontCommand implements Command {
 	
+	private static final long serialVersionUID = -9062290343518987403L;
 	private DrawingModel model;
 	private Shape shape;
 	private int oldIndex;

@@ -5,6 +5,7 @@ import shapes.Command;
 
 public class DeleteCircle implements Command {
 
+	private static final long serialVersionUID = 1051411297990149860L;
 	private DrawingModel model;
 	private Circle circle;
 	

@@ -11,6 +11,7 @@ import shapes.SurfaceShape;
 
 public class HexagonAdapter extends SurfaceShape implements Movable, Prototype {
 
+	private static final long serialVersionUID = 1051419197990174160L;
 	private Hexagon hexagon;
 	
 	public HexagonAdapter(Hexagon h) {
@@ -105,7 +106,9 @@ public class HexagonAdapter extends SurfaceShape implements Movable, Prototype {
 	
 	@Override
 	public String toString() {
-		return "Hexagon selected = " + this.isSelected();
+		return String.format("Hexagon(X=%d,Y=%d,r=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)", this.getHexagon().getX(),
+				this.getHexagon().getY(), this.getHexagon().getR(), getColor().getRed(), getColor().getGreen(), getColor().getBlue(),
+				getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
 	@Override

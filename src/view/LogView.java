@@ -13,6 +13,7 @@ public class LogView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	private static final long serialVersionUID = 2059356167490121150L;
 	private JTextPane textPane;
 	
 	public LogView() {
@@ -31,5 +32,11 @@ public class LogView extends JPanel {
 		textPane.setEditable(false);
 
 	}
+	
+	public JTextPane getTextPane() {
+		return this.textPane;
+	}
+
+	
 
 }

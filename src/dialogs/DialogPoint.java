@@ -24,6 +24,7 @@ import java.awt.event.ActionEvent;
 
 public class DialogPoint extends JDialog {
 
+	private static final long serialVersionUID = 5652194321656403879L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfX;
 	private JTextField tfY;

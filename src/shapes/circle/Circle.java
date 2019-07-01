@@ -12,6 +12,7 @@ import shapes.point.Point;
 
 public class Circle extends SurfaceShape implements Movable, Prototype {
 
+	private static final long serialVersionUID = 1051419297990144860L;
 	private Point centerPoint;
 	private int radius;
 	
@@ -66,6 +67,13 @@ public class Circle extends SurfaceShape implements Movable, Prototype {
 			Circle c = (Circle) s;
 			return this.getRadius() - c.getRadius();
 		} else return 0;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("Circle(X=%d,Y=%d,r=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)", this.getCenterPoint().getX(),
+				this.getCenterPoint().getY(), this.radius, getColor().getRed(), getColor().getGreen(), getColor().getBlue(),
+				getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
 	@Override

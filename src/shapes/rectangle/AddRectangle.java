@@ -5,6 +5,7 @@ import shapes.Command;
 
 public class AddRectangle implements Command {
 
+	private static final long serialVersionUID = 3051851567490151150L;
 	private DrawingModel model;
 	private Rectangle rectangle;
 	

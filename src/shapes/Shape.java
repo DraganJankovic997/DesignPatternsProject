@@ -2,10 +2,15 @@ package shapes;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 import java.util.Observable;
 
-public abstract class Shape extends Observable implements Comparable<Shape>  {
+public abstract class Shape extends Observable implements Comparable<Shape>, Serializable  {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1054899297990149860L;
 	private Color color = Color.BLACK;
 	private boolean selected = false;
 	

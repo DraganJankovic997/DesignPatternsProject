@@ -9,6 +9,7 @@ import shapes.Shape;
 
 public class Point extends Shape implements Movable, Prototype {
 
+	private static final long serialVersionUID = 5051409597590174150L;
 	private int x;
 	private int y;
 	
@@ -46,7 +47,8 @@ public class Point extends Shape implements Movable, Prototype {
 
 	@Override
 	public String toString() {
-		return "(" + this.getX() + "," + this.getY()+ ", " + this.getColor() +")" ;
+		return String.format("Point(x=%d,y=%d,color=[%d-%d-%d],selected=%b)", this.x, this.y, getColor().getRed(), getColor().getGreen(),
+				getColor().getBlue(),isSelected());
 	}
 
 	@Override

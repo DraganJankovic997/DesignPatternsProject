@@ -1,11 +1,16 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import shapes.Shape;
 
-public class DrawingModel {
+public class DrawingModel implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9062290383518987403L;
 	private ArrayList<Shape> shapesList = new ArrayList<Shape>();
 	
 	public ArrayList<Shape> getShapes(){

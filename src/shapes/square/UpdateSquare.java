@@ -3,7 +3,8 @@ package shapes.square;
 import shapes.Command;
 
 public class UpdateSquare implements Command {
-
+	
+	private static final long serialVersionUID = 3051451567490151150L;
 	private Square oldS, newS, curS;
 	
 	public UpdateSquare(Square cs, Square ns) {

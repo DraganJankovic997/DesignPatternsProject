@@ -3,15 +3,25 @@ package controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.Stack;
+import java.util.logging.Logger;
 
 import frame.AppFrame;
 import model.DrawingModel;
+import shapes.Command;
 
-public class ToolsController {
+public class ToolsController implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5095634979978036516L;
 	private DrawingModel model;
 	private AppFrame frame;
 	private int selection = 0;
+	
+
 	
 	public ToolsController(DrawingModel d, AppFrame f) {
 		this.frame = f;

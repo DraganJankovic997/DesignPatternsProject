@@ -19,6 +19,7 @@ public class ToolsSelectionView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
+	private static final long serialVersionUID = 3051856567490121150L;
 	private JButton btnPoint, btnLine, btnSquare, btnRectangle, btnCircle, btnHexagon, btnSelect;
 	private JButton btnOuterColor;
 	private JButton btnInnerColor;

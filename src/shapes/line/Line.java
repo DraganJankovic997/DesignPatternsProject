@@ -11,6 +11,7 @@ import shapes.point.Point;
 
 public class Line extends Shape implements Movable, Prototype {
 
+	private static final long serialVersionUID = 1051416597590174160L;
 	private Point startPoint;
 	private Point endPoint;
 	
@@ -46,7 +47,9 @@ public class Line extends Shape implements Movable, Prototype {
 	}
 	
 	public String toString() {
-		return startPoint.toString() + "->" + endPoint.toString();
+		return String.format("Line(startX=%d,startY=%d,endX=%d,endY=%d,color=[%d-%d-%d],selected=%b)", this.getStartPoint().getX(),
+				this.getStartPoint().getY(), this.getEndPoint().getX(), this.getEndPoint().getY(), 
+				this.getColor().getRed(), this.getColor().getGreen(), this.getColor().getBlue(), this.isSelected());
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import shapes.Command;
 
 public class UpdateRectangle implements Command {
 
+	private static final long serialVersionUID = 5051449567490154150L;
 	private Rectangle oldR, newR, curR;
 	
 	public UpdateRectangle(Rectangle cr, Rectangle nr) {

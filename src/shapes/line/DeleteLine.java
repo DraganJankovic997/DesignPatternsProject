@@ -5,6 +5,7 @@ import shapes.Command;
 
 public class DeleteLine implements Command {
 
+	private static final long serialVersionUID = 1051416597990174160L;
 	private DrawingModel model;
 	private Line line;
 	

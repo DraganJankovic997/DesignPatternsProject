@@ -4,6 +4,7 @@ import shapes.Command;
 
 public class UpdateCircle implements Command {
 
+	private static final long serialVersionUID = 1051419297990149860L;
 	private Circle oldC, newC, curC;
 	
 	public UpdateCircle(Circle cc, Circle nc) {

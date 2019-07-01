@@ -4,6 +4,7 @@ import shapes.Command;
 
 public class UpdateHexagonAdapter implements Command {
 
+	private static final long serialVersionUID = 1051419597990174160L;
 	private HexagonAdapter oldHa, newHa, curHa;
 	
 	public UpdateHexagonAdapter(HexagonAdapter ch, HexagonAdapter nh) {

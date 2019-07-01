@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 
 public class DialogCircle extends JDialog {
 
+	private static final long serialVersionUID = 5652494721656403879L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfX;
 	private JTextField tfY;

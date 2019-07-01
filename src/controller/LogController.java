@@ -1,28 +1,46 @@
 package controller;
 
-import java.awt.Color;
+import java.io.Serializable;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import frame.AppFrame;
 import model.DrawingModel;
-import shapes.Command;
-import shapes.Shape;
-import shapes.point.AddPoint;
-import shapes.point.Point;
 
-public class LogController {
+public class LogController extends Handler {
 
-	private DrawingModel model;
 	private AppFrame frame;
 	
 	public LogController(DrawingModel d, AppFrame f) {
-		this.model = d;
 		this.frame = f;
 	}
 	
 	
-	
-	public Command toCommand(String l) {
-		return new AddPoint(model, new Point(0, 0, Color.BLACK));
+
+
+
+	@Override
+	public void publish(LogRecord record) {
+		String mess = record.getMessage();
+		System.out.println(mess);
+		String oldLog = frame.getLogView().getTextPane().getText();
+		frame.getLogView().getTextPane().setText(oldLog + mess +"\n");
+	}
+
+
+
+	@Override
+	public void flush() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public void close() throws SecurityException {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

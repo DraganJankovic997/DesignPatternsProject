@@ -13,6 +13,7 @@ import shapes.rectangle.Rectangle;
 
 public class Square extends SurfaceShape implements Movable, Prototype {
 
+	private static final long serialVersionUID = 3051459567490151150L;
 	private Point upperLeftPoint;
 	private int width;
 	
@@ -121,8 +122,9 @@ public class Square extends SurfaceShape implements Movable, Prototype {
 	
 	@Override
 	public String toString() {
-		String s = upperLeftPoint.toString() + ", width = " + width + " |color" + this.getColor() + "|inner " + this.getInnerColor();
-		return s;
+		return String.format("Square(UpperX=%d,UpperY=%d,a=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
+				this.getUpperLeftPoint().getX(), this.getUpperLeftPoint().getY(), this.width, getColor().getRed(), getColor().getGreen(),
+				getColor().getBlue(), getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
 	@Override

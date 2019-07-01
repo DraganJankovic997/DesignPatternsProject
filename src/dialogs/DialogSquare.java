@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 
 public class DialogSquare extends JDialog {
 
+	private static final long serialVersionUID = 7652194321656403869L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfX;
 	private JTextField tfY;

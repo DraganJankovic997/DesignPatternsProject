@@ -7,30 +7,56 @@ import javax.swing.JSeparator;
 
 public class MenuView extends JPanel {
 
+	private static final long serialVersionUID = 2059856167490121150L;
+	JButton btnUndo, btnRedo, btnNew, btnSave, btnImport;
 	/**
 	 * Create the panel.
 	 */
 	public MenuView() {
 		setLayout(new GridLayout(1, 0, 0, 0));
 		
-		JButton btnNew = new JButton("New");
+		btnNew = new JButton("New");
 		add(btnNew);
 		
-		JButton btnSave = new JButton("Save");
+		btnSave = new JButton("Save");
 		add(btnSave);
 		
-		JButton btnImport = new JButton("Import");
+		btnImport = new JButton("Import");
 		add(btnImport);
 		
 		JSeparator separator = new JSeparator();
 		add(separator);
 		
-		JButton btnUndo = new JButton("Undo");
+		btnUndo = new JButton("Undo");
 		add(btnUndo);
 		
-		JButton btnRedo = new JButton("Redo");
+		btnRedo = new JButton("Redo");
 		add(btnRedo);
-
 	}
+	
+	public JButton getBtnUndo() {
+		return this.btnUndo;
+	}
+	
+	public JButton getBtnRedo() {
+		return this.btnRedo;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public JButton getBtnNew() {
+		return btnNew;
+	}
+
+	public JButton getBtnSave() {
+		return btnSave;
+	}
+
+	public JButton getBtnImport() {
+		return btnImport;
+	}
+	
 
 }

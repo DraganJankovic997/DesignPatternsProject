@@ -13,6 +13,7 @@ import shapes.Prototype;
 
 public class Rectangle extends SurfaceShape implements Movable, Prototype {
 
+	private static final long serialVersionUID = 5051449597490154150L;
 	private Point upperLeftPoint;
 	private int height;
 	private int width;
@@ -82,6 +83,14 @@ public class Rectangle extends SurfaceShape implements Movable, Prototype {
 			Rectangle r = (Rectangle) s;
 			return this.surface() - r.surface();
 		} else return 0;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format(
+				"Rectangle(UpperX=%d,UpperY=%d,height=%d,width=%d,outercolor=[%d-%d-%d],innercolor=[%d-%d-%d],selected=%b)",
+				this.getUpperLeftPoint().getX(), this.getUpperLeftPoint().getY(), this.height, this.width, getColor().getRed(), getColor().getGreen(),
+				getColor().getBlue(), getInnerColor().getRed(), getInnerColor().getGreen(), getInnerColor().getBlue(),isSelected());
 	}
 
 	@Override

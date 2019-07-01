@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import controller.DrawingController;
+import controller.LogController;
 import controller.MenuController;
 import controller.ModificationController;
 import controller.ToolsController;
@@ -25,6 +26,7 @@ import view.ToolsSelectionView;
 
 public class AppFrame extends JFrame {
 
+	private static final long serialVersionUID = 7652144321656403869L;
 	private JPanel contentPane;
 	private DrawingPanelView drawingPanelView = new DrawingPanelView();
 	private ToolsSelectionView toolsSelectionView = new ToolsSelectionView();
@@ -34,6 +36,8 @@ public class AppFrame extends JFrame {
 	private DrawingController drawingController;
 	private ToolsController toolsController;
 	private ModificationController modificationController;
+	private LogController logController;
+	private MenuController menuController;
 	
 	public DrawingPanelView getDrawingPanelView () {
 		return drawingPanelView;
@@ -61,6 +65,22 @@ public class AppFrame extends JFrame {
 	
 	public ModificationController getModificationController() {
 		return modificationController;
+	}
+	
+	public LogController getLogController() {
+		return logController;
+	}
+	
+	public void setLogController(LogController lc) {
+		this.logController = lc;
+	}
+	
+	public MenuController getMenuController() {
+		return menuController;
+	}
+	
+	public void setMenuController(MenuController mc) {
+		this.menuController = mc;
 	}
 
 	/**
@@ -167,6 +187,37 @@ public class AppFrame extends JFrame {
 			}
 		});
 		
+		menuView.getBtnUndo().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menuController.executeUndo();
+			}
+		});
+		menuView.getBtnRedo().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menuController.executeRedo();
+			}
+		});
+		menuView.getBtnImport().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menuController.openFile(e);
+			}
+		});
+		menuView.getBtnNew().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menuController.newFile(e);
+			}
+		});
+		menuView.getBtnSave().addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				menuController.saveFile(e);
+			}
+		});
+		
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		getContentPane().add(drawingPanelView);
 		getContentPane().add(toolsSelectionView, BorderLayout.WEST);
@@ -178,7 +229,14 @@ public class AppFrame extends JFrame {
 
 	public ModificationView getModificationView() {
 		return modificationView;
-		
+	}
+	
+	public LogView getLogView() {
+		return logView;
+	}
+	
+	public MenuView getMenuView() {
+		return this.menuView;
 	}
 
 }

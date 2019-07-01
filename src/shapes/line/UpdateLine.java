@@ -4,6 +4,7 @@ import shapes.Command;
 
 public class UpdateLine implements Command{
 
+	private static final long serialVersionUID = 1051416597590174150L;
 	private Line oldLine, newLine, currentLine;
 	
 	public UpdateLine(Line cl, Line nl) {

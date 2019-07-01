@@ -14,7 +14,7 @@ public class DrawingPanelView extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	
+	private static final long serialVersionUID = 3051856567490151150L;
 	private DrawingModel drawingModel;
 	
 	public DrawingModel getDrawingModel() {
