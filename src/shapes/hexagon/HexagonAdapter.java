@@ -49,9 +49,7 @@ public class HexagonAdapter extends SurfaceShape implements Movable, Prototype {
 		this.hexagon = hexagon;
 	}
 	
-	public boolean isSelected() {
-		return hexagon.isSelected();
-	}
+
 
 	@Override
 	public int compareTo(Shape s) {
@@ -92,16 +90,21 @@ public class HexagonAdapter extends SurfaceShape implements Movable, Prototype {
 	public void draw(Graphics g) {
 		hexagon.paint(g);
 	}
-
-	@Override
-	public void selected(Graphics g) {
-		hexagon.setAreaColor(Color.BLUE);
-	}
-
-	//doesContain ne radi ?
+	
 	@Override
 	public boolean contains(int x, int y) {
 		return hexagon.doesContain(x, y);
+	}
+	
+	@Override
+	public void setSelected(boolean s) {
+		this.hexagon.setSelected(s);
+		super.setSelected(s);
+	}
+	
+	@Override
+	public boolean isSelected() {
+		return hexagon.isSelected();
 	}
 	
 	@Override
@@ -117,6 +120,12 @@ public class HexagonAdapter extends SurfaceShape implements Movable, Prototype {
 		HexagonAdapter ha = new HexagonAdapter(h, this.getColor(), this.getInnerColor());
 		ha.setSelected(this.isSelected());
 		return ha;
+	}
+
+	@Override
+	public void selected(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

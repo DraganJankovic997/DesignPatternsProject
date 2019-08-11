@@ -24,6 +24,7 @@ import shapes.circle.DeleteCircle;
 import shapes.circle.UpdateCircle;
 import shapes.hexagon.DeleteHexagonAdapter;
 import shapes.hexagon.HexagonAdapter;
+import shapes.hexagon.UpdateHexagonAdapter;
 import shapes.line.DeleteLine;
 import shapes.line.Line;
 import shapes.line.UpdateLine;
@@ -96,6 +97,7 @@ public class ModificationController implements Serializable {
 				cm = new UpdatePoint((Point) sel, dialog.getPoint());
 				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getPoint())); 
 				frame.getMenuController().LogCommand(cm, true, sel, dialog.getPoint());
+				cm.execute();
 			}
 		} else if (sel instanceof Line) {
 			DialogLine dialog = new DialogLine();
@@ -106,6 +108,7 @@ public class ModificationController implements Serializable {
 				cm = new UpdateLine((Line) sel, dialog.getLine());
 				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getLine())); 
 				frame.getMenuController().LogCommand(cm, true, sel, dialog.getLine());
+				cm.execute();
 			}
 		}
 		else if (sel instanceof Square) {
@@ -117,6 +120,7 @@ public class ModificationController implements Serializable {
 				cm = new UpdateSquare((Square) sel, dialog.getSquare());
 				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getSquare())); 
 				frame.getMenuController().LogCommand(cm, true, sel, dialog.getSquare());
+				cm.execute();
 			}
 		} else if (sel instanceof Rectangle) {
 			DialogRectangle dialog = new DialogRectangle();
@@ -127,6 +131,7 @@ public class ModificationController implements Serializable {
 				cm = new UpdateRectangle((Rectangle) sel, dialog.getRectangle());
 				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getRectangle())); 
 				frame.getMenuController().LogCommand(cm, true, sel, dialog.getRectangle());
+				cm.execute();
 			}
 		} else if (sel instanceof Circle) {
 			DialogCircle dialog = new DialogCircle();
@@ -137,9 +142,21 @@ public class ModificationController implements Serializable {
 				cm = new UpdateCircle((Circle) sel, dialog.getCircle());
 				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getCircle())); 
 				frame.getMenuController().LogCommand(cm, true, sel, dialog.getCircle());
+				cm.execute();
+			}
+		} else if (sel instanceof HexagonAdapter) {
+			DialogHexagonAdapter dialog = new DialogHexagonAdapter();
+			dialog.setModal(true);
+			dialog.setHexagonAdapter((HexagonAdapter) sel);
+			dialog.setVisible(true);
+			if(dialog.getUpdated() == true) {
+				cm = new UpdateHexagonAdapter((HexagonAdapter) sel, dialog.getHexagonAdapter());
+				frame.getMenuController().addUndo(cm, frame.getMenuController().toLog(cm, true, sel, dialog.getHexagonAdapter()));
+				frame.getMenuController().LogCommand(cm, true, sel, dialog.getHexagonAdapter());
+				cm.execute();
 			}
 		}
-		cm.execute();
+		
 		frame.getDrawingPanelView().repaint();
 	}
 
