@@ -21,12 +21,16 @@ public class BackCommand implements Command {
 	
 	@Override
 	public void execute() {
-		if(oldIndex != -1 && model.getShapes().indexOf(shape) != -1)Collections.swap(model.getShapes(), oldIndex, oldIndex - 1);
+		if(this.oldIndex > 0) {
+			Collections.swap(model.getShapes(), this.oldIndex, this.oldIndex - 1);
+		}
 	}
 
 	@Override
 	public void unexecute() {
-		if(oldIndex != -1 && model.getShapes().indexOf(shape) != -1)Collections.swap(model.getShapes(), model.getShapes().indexOf(shape) , oldIndex);
+		if(this.oldIndex > 0) {
+			Collections.swap(model.getShapes(), this.oldIndex - 1, this.oldIndex);
+		}
 	}
 
 }

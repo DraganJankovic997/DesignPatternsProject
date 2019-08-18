@@ -121,7 +121,6 @@ public class MenuController implements Serializable {
         	}
 			FileLoader loader = new FileLoader(fl);
 			loader.loadFile(fc.getSelectedFile());
-			System.out.println(model.getShapes());
 	    	frame.getDrawingPanelView().repaint();
 		}
 
@@ -157,10 +156,7 @@ public class MenuController implements Serializable {
 		updateUndoRedoButtons();
 		frame.getDrawingPanelView().repaint();
 	}
-	
-	
-	
-	
+		
 	public void clearUndo() {
 		undoStack.clear();
 	}

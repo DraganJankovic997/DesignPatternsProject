@@ -9,19 +9,26 @@ import javax.swing.JOptionPane;
 import frame.AppFrame;
 import hexagon.Hexagon;
 import model.DrawingModel;
+import shapes.Command;
 import shapes.Shape;
 import shapes.circle.AddCircle;
 import shapes.circle.Circle;
+import shapes.circle.UpdateCircle;
 import shapes.hexagon.AddHexagonAdapter;
 import shapes.hexagon.HexagonAdapter;
+import shapes.hexagon.UpdateHexagonAdapter;
 import shapes.line.AddLine;
 import shapes.line.Line;
+import shapes.line.UpdateLine;
 import shapes.point.AddPoint;
 import shapes.point.Point;
+import shapes.point.UpdatePoint;
 import shapes.rectangle.AddRectangle;
 import shapes.rectangle.Rectangle;
+import shapes.rectangle.UpdateRectangle;
 import shapes.square.AddSquare;
 import shapes.square.Square;
+import shapes.square.UpdateSquare;
 
 public class DrawingController implements Serializable {
 
@@ -146,10 +153,62 @@ public class DrawingController implements Serializable {
 					selbool = true;
 				}
 			}
-			selectedShape.setSelected(!selectedShape.isSelected());
 			if(selbool == false) {
 				unselectAll();
+			} else {
+				Shape newShape = null;
+				Command cmd = null;
+				if(selectedShape instanceof Point) {
+					Point op = (Point) selectedShape;
+					newShape = new Point(op.getX(), op.getY(), op.getColor());
+					newShape.setSelected(!op.isSelected());
+					newShape.addObserver(obs);
+					cmd = new UpdatePoint(op, (Point) newShape);
+				} else if (selectedShape instanceof Line) {
+					Line ol = (Line) selectedShape;
+					newShape = new Line(ol.getStartPoint(), ol.getEndPoint(), ol.getColor());
+					newShape.setSelected(!ol.isSelected());
+					newShape.addObserver(obs);
+					cmd = new UpdateLine(ol, (Line) newShape);
+				} else if (selectedShape instanceof Square) {
+					Square os = (Square) selectedShape;
+					newShape = new Square(os.getUpperLeftPoint(), os.getWidth(), os.getColor(), os.getInnerColor());
+					newShape.setSelected(!os.isSelected());
+					newShape.addObserver(obs);
+					cmd = new UpdateSquare(os, (Square) newShape);
+				} else if (selectedShape instanceof Rectangle) {
+					Rectangle or = (Rectangle) selectedShape;
+					newShape = new Rectangle(or.getUpperLeftPoint(), or.getHeight(), or.getWidth(), or.getColor(), or.getInnerColor());
+					newShape.setSelected(!or.isSelected());
+					newShape.addObserver(obs);
+					cmd = new UpdateRectangle(or, (Rectangle) newShape);
+				} else if (selectedShape instanceof Circle) {
+					Circle oc = (Circle) selectedShape;
+					newShape = new Circle(oc.getCenterPoint(), oc.getRadius(), oc.getColor(), oc.getInnerColor());
+					newShape.setSelected(!oc.isSelected());
+					newShape.addObserver(obs);
+					cmd = new UpdateCircle(oc, (Circle) newShape);
+				} else if (selectedShape instanceof HexagonAdapter) {
+					HexagonAdapter oha = (HexagonAdapter) selectedShape;
+					newShape = new HexagonAdapter(oha.getHexagon(), oha.getColor(), oha.getInnerColor());
+					newShape.setSelected(!oha.isSelected());
+					newShape.addObserver(obs);
+					cmd = new UpdateHexagonAdapter(oha, (HexagonAdapter) newShape);
+				}
+				frame.getMenuController().addUndo(cmd, frame.getMenuController().toLog(cmd, true, selectedShape, newShape));
+				frame.getMenuController().LogCommand(cmd, true, selectedShape, newShape);
+				cmd.execute();
+
+				
+				
+				
 			}
+			
+			
+			
+			
+			
+			
 			klik = false;
 		} else {
 			unselectAll();

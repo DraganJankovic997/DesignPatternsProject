@@ -21,14 +21,16 @@ public class BringToFrontCommand implements Command {
 
 	@Override
 	public void execute() {
-		if(oldIndex != -1 && model.getShapes().indexOf(shape) != -1
-				&& oldIndex + 1 < model.getShapes().size() - 1)Collections.swap(model.getShapes(), oldIndex, model.getShapes().size() - 1);
+		if(this.oldIndex < model.getShapes().size() - 1) {
+			Collections.swap(model.getShapes(), this.oldIndex, model.getShapes().size()-1);
+		}
 	}
 
 	@Override
 	public void unexecute() {
-		if(oldIndex != -1 && model.getShapes().indexOf(shape) != -1
-				&& oldIndex + 1 < model.getShapes().size() - 1)Collections.swap(model.getShapes(), model.getShapes().indexOf(shape), oldIndex);
+		if(this.oldIndex < model.getShapes().size() - 1) {
+			Collections.swap(model.getShapes(), model.getShapes().size() - 1, this.oldIndex);
+		}
 	}
 
 }

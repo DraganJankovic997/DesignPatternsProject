@@ -34,22 +34,32 @@ public class LogFileLoader implements AssetLoader {
 				LogInput l = new LogInput();
 				String line;
 				String finalLog = "";
+				String insertLog = "";
 				while((line = b.readLine()) != null) {
-					finalLog = finalLog + line + "\n";
-					l.getTextPane().setText(finalLog);
+					insertLog = insertLog + line + "\n";
+					l.getTextPane().setText(insertLog);
 					l.setInsert(false);
 					l.setModal(true);
 					l.setVisible(true);
 					if(l.getInsert() == true) {
-						ToCommand ic = new ToCommand(model, frame);
-						Command c = ic.transform(line);
-						c.execute();
+						finalLog = finalLog + line + "\n";
+						String ex = line.split("_")[1];
+						if(ex.equals("execute")) {
+							ToCommand ic = new ToCommand(model, frame);
+							Command c = ic.transform(line);
+							c.execute();
+							frame.getMenuController().addUndo(c, line);
+						}
+						else if (ex.equals("unexecute")) {
+							frame.getMenuController().executeUndo();
+						}
 						frame.getDrawingPanelView().repaint();
+						l.setInsert(false);
 					}
 					frame.getLogView().getTextPane().setText(finalLog);
 				}
 			} catch(Exception ex) {
-				JOptionPane.showMessageDialog(null, "Error while reading.");
+				System.out.println(ex);
 			}
 		}
 	}

@@ -62,45 +62,75 @@ public class ToCommand {
 		if(firstShapeSplit[0].equals("Point")) {
 			String ps = firstShapeSplit[1];
 			Point p = toPoint(ps.substring(0, ps.length() - 1));
+			Point p2 = null;
+			if(s2 != null) {
+				p2 = toPoint(s2);
+				
+			}
 			sh = p;
 			if(className.equals("AddPoint")) finalCommand = new AddPoint(model, p);
 			else if (className.equals("DeletePoint")) finalCommand = new DeletePoint(model, p);
-			else if (className.equals("UpdatePoint")) finalCommand = new UpdatePoint(p, toPoint(s2));
+			else if (className.equals("UpdatePoint")) finalCommand = new UpdatePoint(p, p2);
 		} else if(firstShapeSplit[0].equals("Line")) {
 			String ls = firstShapeSplit[1];
 			Line l = toLine(ls.substring(0, ls.length() - 1));
 			sh = l;
+			Line l2 =null;
+			if(s2!=null) {
+				l2 = toLine(s2);
+				System.out.println("l1 : " + l.isSelected());
+				System.out.println("l2 : " + l2.isSelected());
+				
+			}
 			if(className.equals("AddLine")) finalCommand = new AddLine(model, l);
 			else if(className.equals("DeleteLine")) finalCommand = new DeleteLine(model, l);
-			else if(className.equals("UpdateLine")) finalCommand = new UpdateLine(l, toLine(s2));
+			else if(className.equals("UpdateLine")) finalCommand = new UpdateLine(l, l2);
 		} else if(firstShapeSplit[0].equals("Square")) {
 			String ss = firstShapeSplit[1];
 			Square sq = toSquare(ss.substring(0, ss.length()-1));
 			sh = sq;
+			Square sq2 = null;
+			if(s2!=null) {
+				sq2 = toSquare(s2);
+			}
 			if(className.equals("AddSquare")) finalCommand = new AddSquare(model, sq);
 			else if(className.equals("DeleteSquare")) finalCommand = new DeleteSquare(model, sq);
-			else if(className.equals("UpdateSquare")) finalCommand = new UpdateSquare(sq, toSquare(s2));
+			else if(className.equals("UpdateSquare")) finalCommand = new UpdateSquare(sq, sq2);
 		} else if(firstShapeSplit[0].equals("Rectangle")) {
 			String ss = firstShapeSplit[1];
 			Rectangle r = toRectangle(ss.substring(0, ss.length()-1));
 			sh = r;
+			Rectangle r2 = null;
+			if(s2 != null) {
+				r2 = toRectangle(s2);
+				
+			}
 			if(className.equals("AddRectangle")) finalCommand = new AddRectangle(model, r);
 			else if(className.equals("DeleteRectangle")) finalCommand = new DeleteRectangle(model, r);
-			else if(className.equals("UpdateRectangle")) finalCommand = new UpdateRectangle(r, toRectangle(s2));
+			else if(className.equals("UpdateRectangle")) finalCommand = new UpdateRectangle(r, r2);
 		} else if(firstShapeSplit[0].equals("Circle")) {
 			String ss = firstShapeSplit[1];
 			Circle c = toCircle(ss.substring(0, ss.length()-1));
 			sh = c;
+			Circle c2 = null;
+			if(s2 != null) {
+				c2 = toCircle(s2);
+				
+			}
 			if(className.equals("AddCircle")) finalCommand = new AddCircle(model, c);
 			else if(className.equals("DeleteCircle")) finalCommand = new DeleteCircle(model, c);
-			else if(className.equals("UpdateCircle")) finalCommand = new UpdateCircle(c, toCircle(s2));
+			else if(className.equals("UpdateCircle")) finalCommand = new UpdateCircle(c, c2);
 		} else if(firstShapeSplit[0].equals("HexagonAdapter")) {
 			String ss = firstShapeSplit[1];
 			HexagonAdapter h = toHexagonAdapter(ss.substring(0, ss.length()-1));
 			sh = h;
+			HexagonAdapter h2 = null;
+			if(s2 != null) {
+				h2 = toHexagonAdapter(s2);
+			}
 			if(className.equals("AddHexagonAdapter")) finalCommand = new AddHexagonAdapter(model, h);
 			else if(className.equals("DeleteHexagonAdapter")) finalCommand = new DeleteHexagonAdapter(model, h);
-			else if(className.equals("UpdateHexagonAdapter")) finalCommand = new UpdateHexagonAdapter(h, toHexagonAdapter(s2));
+			else if(className.equals("UpdateHexagonAdapter")) finalCommand = new UpdateHexagonAdapter(h, h2);
 		}
 		
 		return finalCommand;

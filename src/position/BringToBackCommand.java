@@ -21,12 +21,16 @@ public class BringToBackCommand implements Command {
 	
 	@Override
 	public void execute() {
-		if(oldIndex != -1 && model.getShapes().indexOf(shape) != -1)Collections.swap(model.getShapes(), 0, oldIndex);
+		if(this.oldIndex > 0) {
+			Collections.swap(model.getShapes(), this.oldIndex, 0);
+		}
 	}
 
 	@Override
 	public void unexecute() {
-		if(oldIndex != -1 && model.getShapes().indexOf(shape) != -1)Collections.swap(model.getShapes(), model.getShapes().indexOf(shape), oldIndex);
+		if(this.oldIndex > 0) {
+			Collections.swap(model.getShapes(), 0, this.oldIndex);
+		}
 	}
 
 }

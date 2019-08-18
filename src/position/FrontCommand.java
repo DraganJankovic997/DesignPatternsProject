@@ -20,14 +20,19 @@ public class FrontCommand implements Command {
 	}
 	@Override
 	public void execute() {
-		if(oldIndex != -1 && model.getShapes().indexOf(shape) != -1
-				&& oldIndex + 1 < model.getShapes().size() - 1)Collections.swap(model.getShapes(), oldIndex, oldIndex + 1);
+		if(this.oldIndex < model.getShapes().size() - 1) {
+			System.out.println(shape + "stari indeks " + this.oldIndex + "novi indeks : " + (this.oldIndex + 1));
+			Collections.swap(model.getShapes(), this.oldIndex, this.oldIndex + 1);
+			System.out.println(shape);
+		}
+		
 	}
 
 	@Override
 	public void unexecute() {
-		if(oldIndex != -1 && model.getShapes().indexOf(shape) != -1
-				&& oldIndex + 1 < model.getShapes().size() - 1)Collections.swap(model.getShapes(), oldIndex, model.getShapes().indexOf(shape));
+		if(this.oldIndex < model.getShapes().size() - 1 ) {
+			Collections.swap(model.getShapes(), this.oldIndex + 1, this.oldIndex);
+		}
 	}
 
 }
