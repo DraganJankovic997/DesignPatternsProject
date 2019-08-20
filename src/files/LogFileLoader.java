@@ -47,6 +47,7 @@ public class LogFileLoader implements AssetLoader {
 						if(ex.equals("execute")) {
 							ToCommand ic = new ToCommand(model, frame);
 							Command c = ic.transform(line);
+							System.out.println(c);
 							c.execute();
 							frame.getMenuController().addUndo(c, line);
 						}
