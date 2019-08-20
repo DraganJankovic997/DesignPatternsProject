@@ -46,10 +46,13 @@ public class LogFileLoader implements AssetLoader {
 						String ex = line.split("_")[1];
 						if(ex.equals("execute")) {
 							ToCommand ic = new ToCommand(model, frame);
-							Command c = ic.transform(line);
-							System.out.println(c);
-							c.execute();
-							frame.getMenuController().addUndo(c, line);
+							try {
+								Command c = ic.transform(line);
+								c.execute();
+								frame.getMenuController().addUndo(c, line);
+							} catch(Exception exc) {
+								System.out.println(exc);
+							}
 						}
 						else if (ex.equals("unexecute")) {
 							frame.getMenuController().executeUndo();
@@ -60,7 +63,7 @@ public class LogFileLoader implements AssetLoader {
 					frame.getLogView().getTextPane().setText(finalLog);
 				}
 			} catch(Exception ex) {
-				System.out.println(ex);
+				ex.printStackTrace();
 			}
 		}
 	}

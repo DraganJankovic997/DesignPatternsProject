@@ -70,11 +70,14 @@ public class ToCommand {
 			else if(firstShapeSplit[0].equals("Rectangle")) sh1 = toRectangle(shapeString.substring(0, shapeString.length() - 1));
 			else if(firstShapeSplit[0].equals("Circle")) sh1 = toCircle(shapeString.substring(0, shapeString.length() - 1));
 			else if(firstShapeSplit[0].equals("HexagonAdapter")) sh1 = toHexagonAdapter(shapeString.substring(0, shapeString.length() - 1));
+			
+			Shape realShape= check(sh);
 
-			if(className.equals("BackCommand")) finalCommand = new BackCommand(model, sh1);
-			else if(className.equals("FrontCommand")) finalCommand = new FrontCommand(model, sh1);
-			else if(className.equals("BringToBackCommand")) finalCommand = new BringToBackCommand(model, sh1);
-			else if(className.equals("BringToFrontCommand")) finalCommand = new BringToFrontCommand(model, sh1);
+			
+			if(className.equals("BackCommand")) finalCommand = new BackCommand(model, realShape);
+			else if(className.equals("FrontCommand")) finalCommand = new FrontCommand(model, realShape);
+			else if(className.equals("BringToBackCommand")) finalCommand = new BringToBackCommand(model, realShape);
+			else if(className.equals("BringToFrontCommand")) finalCommand = new BringToFrontCommand(model, realShape);
 				
 		} else {
 			//nije pozicija 
@@ -96,21 +99,24 @@ public class ToCommand {
 				sh = p;
 				if(className.equals("AddPoint")) finalCommand = new AddPoint(model, p);
 				else if (className.equals("DeletePoint")) finalCommand = new DeletePoint(model, p);
-				else if (className.equals("UpdatePoint")) finalCommand = new UpdatePoint(p, p2);
+				else if (className.equals("UpdatePoint")) {
+					Point realPoint = (Point) check(p);
+					finalCommand = new UpdatePoint(realPoint, p2);
+				}
 			} else if(firstShapeSplit[0].equals("Line")) {
 				String ls = firstShapeSplit[1];
 				Line l = toLine(ls.substring(0, ls.length() - 1));
 				sh = l;
 				Line l2 =null;
 				if(s2!=null) {
-					l2 = toLine(s2);
-					System.out.println("l1 : " + l.isSelected());
-					System.out.println("l2 : " + l2.isSelected());
-					
+					l2 = toLine(s2);					
 				}
 				if(className.equals("AddLine")) finalCommand = new AddLine(model, l);
 				else if(className.equals("DeleteLine")) finalCommand = new DeleteLine(model, l);
-				else if(className.equals("UpdateLine")) finalCommand = new UpdateLine(l, l2);
+				else if(className.equals("UpdateLine")) {
+					Line realLine = (Line) check(l);
+					finalCommand = new UpdateLine(realLine, l2);
+				}
 			} else if(firstShapeSplit[0].equals("Square")) {
 				String ss = firstShapeSplit[1];
 				Square sq = toSquare(ss.substring(0, ss.length()-1));
@@ -121,7 +127,10 @@ public class ToCommand {
 				}
 				if(className.equals("AddSquare")) finalCommand = new AddSquare(model, sq);
 				else if(className.equals("DeleteSquare")) finalCommand = new DeleteSquare(model, sq);
-				else if(className.equals("UpdateSquare")) finalCommand = new UpdateSquare(sq, sq2);
+				else if(className.equals("UpdateSquare")){
+					Square realSquare = (Square) check(sq);
+					finalCommand = new UpdateSquare(realSquare, sq2);
+				}
 			} else if(firstShapeSplit[0].equals("Rectangle")) {
 				String ss = firstShapeSplit[1];
 				Rectangle r = toRectangle(ss.substring(0, ss.length()-1));
@@ -133,7 +142,10 @@ public class ToCommand {
 				}
 				if(className.equals("AddRectangle")) finalCommand = new AddRectangle(model, r);
 				else if(className.equals("DeleteRectangle")) finalCommand = new DeleteRectangle(model, r);
-				else if(className.equals("UpdateRectangle")) finalCommand = new UpdateRectangle(r, r2);
+				else if(className.equals("UpdateRectangle")) {
+					Rectangle realRectangle = (Rectangle) check(r);
+					finalCommand = new UpdateRectangle(realRectangle, r2);
+				}
 			} else if(firstShapeSplit[0].equals("Circle")) {
 				String ss = firstShapeSplit[1];
 				Circle c = toCircle(ss.substring(0, ss.length()-1));
@@ -145,7 +157,10 @@ public class ToCommand {
 				}
 				if(className.equals("AddCircle")) finalCommand = new AddCircle(model, c);
 				else if(className.equals("DeleteCircle")) finalCommand = new DeleteCircle(model, c);
-				else if(className.equals("UpdateCircle")) finalCommand = new UpdateCircle(c, c2);
+				else if(className.equals("UpdateCircle")) {
+					Circle realCircle = (Circle) check(c);
+					finalCommand = new UpdateCircle(realCircle, c2);
+				}
 			} else if(firstShapeSplit[0].equals("HexagonAdapter")) {
 				String ss = firstShapeSplit[1];
 				HexagonAdapter h = toHexagonAdapter(ss.substring(0, ss.length()-1));
@@ -156,10 +171,12 @@ public class ToCommand {
 				}
 				if(className.equals("AddHexagonAdapter")) finalCommand = new AddHexagonAdapter(model, h);
 				else if(className.equals("DeleteHexagonAdapter")) finalCommand = new DeleteHexagonAdapter(model, h);
-				else if(className.equals("UpdateHexagonAdapter")) finalCommand = new UpdateHexagonAdapter(h, h2);
+				else if(className.equals("UpdateHexagonAdapter")) {
+					HexagonAdapter realHexagonAdapter = (HexagonAdapter) check(h);
+					finalCommand = new UpdateHexagonAdapter(realHexagonAdapter, h2);
+				}
 			}
 		}
-
 		return finalCommand;
 	}
 
@@ -246,4 +263,19 @@ public class ToCommand {
 		h.setSelected(s);
 		return h;
 	}
+	
+	
+	private Shape check(Shape forCheck) {
+		Shape sh = null;
+		for(Shape var : model.getShapes()) 
+		{ 
+			if(var.equals(forCheck) == true) sh = var;
+		}
+		return sh;
+	}
+	
+	
+	
+	
+	
 }
