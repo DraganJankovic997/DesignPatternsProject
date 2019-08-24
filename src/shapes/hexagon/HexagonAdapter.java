@@ -79,9 +79,13 @@ public class HexagonAdapter extends SurfaceShape implements Movable, Prototype {
 	@Override
 	public boolean equals(Shape s) {
 		if (s instanceof HexagonAdapter) {
-			Hexagon h = ((HexagonAdapter) s).getHexagon();
-			return hexagon.getX() == h.getX() && hexagon.getY() == h.getY()
-					&& hexagon.getR() == h.getR();
+			HexagonAdapter h = ((HexagonAdapter) s);
+			if(hexagon.getX() == h.getHexagon().getX() && hexagon.getY() == h.getHexagon().getY() && hexagon.getR() == h.getHexagon().getR() 
+					&& this.getColor().getRGB() == h.getColor().getRGB() && this.getInnerColor().getRGB() == h.getInnerColor().getRGB()) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		return false;
 	}

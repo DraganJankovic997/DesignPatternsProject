@@ -108,7 +108,8 @@ public class Line extends Shape implements Movable, Prototype {
 	public boolean equals(Shape s) {
 		if(s instanceof Line) {
 			Line l = (Line) s;
-			if(startPoint.equals(l.getStartPoint()) && endPoint.equals(l.getEndPoint()) && this.getColor() == l.getColor()) {
+			if(startPoint.equals(l.getStartPoint()) && endPoint.equals(l.getEndPoint()) && 
+					this.getColor().getRGB() == l.getColor().getRGB()) {
 				return true;
 			}
 			else return false;

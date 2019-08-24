@@ -57,7 +57,7 @@ public class Point extends Shape implements Movable, Prototype {
 			Point p = (Point) s;
 			if(	this.getX() == p.getX() &&
 				this.getY() == p.getY() &&
-				this.getColor() == p.getColor()) return true;
+				this.getColor().getRGB() == p.getColor().getRGB()) return true;
 			else return false;
 		} else return false;
 	}

@@ -71,13 +71,13 @@ public class ToCommand {
 			else if(firstShapeSplit[0].equals("Circle")) sh1 = toCircle(shapeString.substring(0, shapeString.length() - 1));
 			else if(firstShapeSplit[0].equals("HexagonAdapter")) sh1 = toHexagonAdapter(shapeString.substring(0, shapeString.length() - 1));
 			
-			Shape realShape= check(sh);
+			Shape realModel = check(sh1);
 
 			
-			if(className.equals("BackCommand")) finalCommand = new BackCommand(model, realShape);
-			else if(className.equals("FrontCommand")) finalCommand = new FrontCommand(model, realShape);
-			else if(className.equals("BringToBackCommand")) finalCommand = new BringToBackCommand(model, realShape);
-			else if(className.equals("BringToFrontCommand")) finalCommand = new BringToFrontCommand(model, realShape);
+			if(className.equals("BackCommand")) finalCommand = new BackCommand(model, realModel);
+			else if(className.equals("FrontCommand")) finalCommand = new FrontCommand(model, realModel);
+			else if(className.equals("BringToBackCommand")) finalCommand = new BringToBackCommand(model, realModel);
+			else if(className.equals("BringToFrontCommand")) finalCommand = new BringToFrontCommand(model, realModel);
 				
 		} else {
 			//nije pozicija 

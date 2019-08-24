@@ -104,8 +104,9 @@ public class Rectangle extends SurfaceShape implements Movable, Prototype {
 	public boolean equals(Shape s) {
 		if(s instanceof Rectangle) {
 			Rectangle r = (Rectangle) s;
-			if(upperLeftPoint.equals(r.getUpperLeftPoint()) && height == r.getHeight() && width == r.getWidth() && this.getColor() == r.getColor()
-					&& this.getInnerColor() == r.getInnerColor()) {
+			if(upperLeftPoint.equals(r.getUpperLeftPoint()) && height == r.getHeight() && width == r.getWidth() 
+					&& this.getColor().getRGB() == r.getColor().getRGB()
+					&& this.getInnerColor().getRGB() == r.getInnerColor().getRGB()) {
 				return true;
 			}
 			else return false;

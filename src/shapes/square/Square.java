@@ -81,8 +81,8 @@ public class Square extends SurfaceShape implements Movable, Prototype {
 	public boolean equals(Shape s) {
 		if(s instanceof Square) {
 			Square k = (Square) s;
-			if(upperLeftPoint.equals(k.getUpperLeftPoint()) && width == k.getWidth() && this.getColor() == k.getColor()
-					&& this.getInnerColor() == k.getInnerColor()) {
+			if(upperLeftPoint.equals(k.getUpperLeftPoint()) && width == k.getWidth() && this.getColor().getRGB() == k.getColor().getRGB()
+					&& this.getInnerColor().getRGB() == k.getInnerColor().getRGB()) {
 				return true;
 			}
 			else return false;

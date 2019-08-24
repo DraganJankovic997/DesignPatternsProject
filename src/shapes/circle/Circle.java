@@ -118,8 +118,8 @@ public class Circle extends SurfaceShape implements Movable, Prototype {
 	public boolean equals(Shape s) {
 		if(s instanceof Circle) {
 			Circle c = (Circle) s;
-			if(centerPoint.equals(c.getCenterPoint()) && radius == c.getRadius() && this.getColor() == c.getColor()
-					&& this.getInnerColor() == c.getInnerColor()) {
+			if(centerPoint.equals(c.getCenterPoint()) && radius == c.getRadius() && this.getColor().getRGB() == c.getColor().getRGB()
+					&& this.getInnerColor().getRGB() == c.getInnerColor().getRGB()) {
 				return true;
 			}
 			else return false;
