@@ -2,6 +2,7 @@ package log;
 
 import java.awt.Color;
 
+import controller.ShapeObserverController;
 import frame.AppFrame;
 import model.DrawingModel;
 import position.BackCommand;
@@ -38,9 +39,13 @@ import shapes.square.UpdateSquare;
 public class ToCommand {
 	private DrawingModel model;
 	private AppFrame frame;
+	private ShapeObserverController obs;
+	
+	
 	public ToCommand(DrawingModel d,AppFrame f) {
 		this.model=d;
 		this.frame=f;
+		this.obs = new ShapeObserverController(this.model, this.frame);
 	}
 	
 	public Command transform(String s) {
@@ -53,7 +58,6 @@ public class ToCommand {
 		s1 = sSplit[2];
 		if(sSplit.length > 3) s2 = sSplit[4];
 		else s2 = null;
-		
 		
 		Shape sh = null;
 		
@@ -82,7 +86,6 @@ public class ToCommand {
 		} else {
 			//nije pozicija 
 			
-			
 			if(s2 != null) {
 				s2 = s2.split("\\(")[1];
 				s2 = s2.substring(0, s2.length() - 1);
@@ -97,6 +100,7 @@ public class ToCommand {
 					
 				}
 				sh = p;
+				p.addObserver(obs);
 				if(className.equals("AddPoint")) finalCommand = new AddPoint(model, p);
 				else if (className.equals("DeletePoint")) finalCommand = new DeletePoint(model, p);
 				else if (className.equals("UpdatePoint")) {
@@ -111,6 +115,7 @@ public class ToCommand {
 				if(s2!=null) {
 					l2 = toLine(s2);					
 				}
+				l.addObserver(obs);
 				if(className.equals("AddLine")) finalCommand = new AddLine(model, l);
 				else if(className.equals("DeleteLine")) finalCommand = new DeleteLine(model, l);
 				else if(className.equals("UpdateLine")) {
@@ -125,6 +130,7 @@ public class ToCommand {
 				if(s2!=null) {
 					sq2 = toSquare(s2);
 				}
+				sq.addObserver(obs);
 				if(className.equals("AddSquare")) finalCommand = new AddSquare(model, sq);
 				else if(className.equals("DeleteSquare")) finalCommand = new DeleteSquare(model, sq);
 				else if(className.equals("UpdateSquare")){
@@ -140,6 +146,7 @@ public class ToCommand {
 					r2 = toRectangle(s2);
 					
 				}
+				r.addObserver(obs);
 				if(className.equals("AddRectangle")) finalCommand = new AddRectangle(model, r);
 				else if(className.equals("DeleteRectangle")) finalCommand = new DeleteRectangle(model, r);
 				else if(className.equals("UpdateRectangle")) {
@@ -155,13 +162,14 @@ public class ToCommand {
 					c2 = toCircle(s2);
 					
 				}
+				c.addObserver(obs);
 				if(className.equals("AddCircle")) finalCommand = new AddCircle(model, c);
 				else if(className.equals("DeleteCircle")) finalCommand = new DeleteCircle(model, c);
 				else if(className.equals("UpdateCircle")) {
 					Circle realCircle = (Circle) check(c);
 					finalCommand = new UpdateCircle(realCircle, c2);
 				}
-			} else if(firstShapeSplit[0].equals("HexagonAdapter")) {
+			} else if(firstShapeSplit[0].equals("Hexagon")) {
 				String ss = firstShapeSplit[1];
 				HexagonAdapter h = toHexagonAdapter(ss.substring(0, ss.length()-1));
 				sh = h;
@@ -169,6 +177,7 @@ public class ToCommand {
 				if(s2 != null) {
 					h2 = toHexagonAdapter(s2);
 				}
+				h.addObserver(obs);
 				if(className.equals("AddHexagonAdapter")) finalCommand = new AddHexagonAdapter(model, h);
 				else if(className.equals("DeleteHexagonAdapter")) finalCommand = new DeleteHexagonAdapter(model, h);
 				else if(className.equals("UpdateHexagonAdapter")) {
@@ -252,6 +261,7 @@ public class ToCommand {
 	}
 	
 	private HexagonAdapter toHexagonAdapter(String substring) {
+		
 		String[] split = substring.split(",");
 		int x=Integer.parseInt(split[0].split("=")[1]);
 		int y=Integer.parseInt(split[1].split("=")[1]);
@@ -261,6 +271,9 @@ public class ToCommand {
 		boolean s=Boolean.parseBoolean(split[5].split("=")[1]);
 		HexagonAdapter h=new HexagonAdapter(new hexagon.Hexagon(x, y, r), oc, ic);
 		h.setSelected(s);
+		System.out.println("X=" + x);
+		System.out.println("y=" + y);
+		System.out.println("r=" + r);
 		return h;
 	}
 	

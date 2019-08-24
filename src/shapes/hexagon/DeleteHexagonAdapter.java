@@ -8,10 +8,12 @@ public class DeleteHexagonAdapter implements Command {
 	private static final long serialVersionUID = 1051419197990174860L;
 	private DrawingModel model;
 	private HexagonAdapter ha;
+	private int oldPosition;
 	
 	public DeleteHexagonAdapter(DrawingModel d, HexagonAdapter h) {
 		this.model = d;
 		this.ha = h;
+		this.oldPosition = model.getShapes().indexOf(ha);
 	}
 	
 	@Override
@@ -21,7 +23,7 @@ public class DeleteHexagonAdapter implements Command {
 
 	@Override
 	public void unexecute() {
-		model.addShape(ha);
+		model.insertInto(ha, oldPosition);
 	}
 
 }

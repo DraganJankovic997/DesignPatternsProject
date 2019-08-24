@@ -8,10 +8,12 @@ public class DeleteLine implements Command {
 	private static final long serialVersionUID = 1051416597990174160L;
 	private DrawingModel model;
 	private Line line;
+	private int oldPosition;
 	
 	public DeleteLine(DrawingModel d, Line l) {
 		this.model = d;
 		this.line = l;
+		this.oldPosition = model.getShapes().indexOf(line);
 	}
 	
 	@Override
@@ -21,6 +23,6 @@ public class DeleteLine implements Command {
 
 	@Override
 	public void unexecute() {
-		model.addShape(line);
+		model.insertInto(line, oldPosition);
 	}
 }

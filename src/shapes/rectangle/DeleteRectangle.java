@@ -8,10 +8,12 @@ public class DeleteRectangle implements Command {
 	private static final long serialVersionUID = 5051449597490174150L;
 	private DrawingModel model;
 	private Rectangle rectangle;
+	private int oldPosition;
 	
 	public DeleteRectangle(DrawingModel d, Rectangle r) {
 		this.model = d;
 		this.rectangle = r;
+		this.oldPosition = model.getShapes().indexOf(rectangle);
 	}
 	@Override
 	public void execute() {
@@ -20,7 +22,7 @@ public class DeleteRectangle implements Command {
 
 	@Override
 	public void unexecute() {
-		model.addShape(rectangle);
+		model.insertInto(rectangle, oldPosition);
 	}
 
 }

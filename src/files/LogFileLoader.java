@@ -51,7 +51,7 @@ public class LogFileLoader implements AssetLoader {
 								c.execute();
 								frame.getMenuController().addUndo(c, line);
 							} catch(Exception exc) {
-								System.out.println(exc);
+//								System.out.println(exc);
 							}
 						}
 						else if (ex.equals("unexecute")) {
@@ -63,7 +63,7 @@ public class LogFileLoader implements AssetLoader {
 					frame.getLogView().getTextPane().setText(finalLog);
 				}
 			} catch(Exception ex) {
-				ex.printStackTrace();
+//				ex.printStackTrace();
 			}
 		}
 	}

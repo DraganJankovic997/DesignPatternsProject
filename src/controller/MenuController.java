@@ -128,6 +128,7 @@ public class MenuController implements Serializable {
 
 	public void saveFile(ActionEvent e) {
 		JFileChooser fc = new JFileChooser();
+		fc.setApproveButtonText("Save");
 		fc.setDialogTitle("Save log file");
 		fc.setFileFilter(new FileNameExtensionFilter("serialized file (.ser)", "ser"));
         fc.setFileFilter(new FileNameExtensionFilter("log file (.log)", "log"));

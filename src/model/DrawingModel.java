@@ -28,4 +28,7 @@ public class DrawingModel implements Serializable {
 	public void deleteShape(Shape s) {
 		shapesList.remove(s);
 	}
+	public void insertInto(Shape s, int pos) {
+		shapesList.add(pos, s);
+	}
 }

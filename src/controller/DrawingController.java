@@ -134,7 +134,7 @@ public class DrawingController implements Serializable {
 				Hexagon he = new Hexagon(start.getX(), start.getY(), r);
 				he.setBorderColor(o);
 				he.setAreaColor(i);
-				HexagonAdapter h = new HexagonAdapter(he);
+				HexagonAdapter h = new HexagonAdapter(he, o, i);
 				h.addObserver(obs);
 				AddHexagonAdapter a = new AddHexagonAdapter(model, h);
 				a.execute();
