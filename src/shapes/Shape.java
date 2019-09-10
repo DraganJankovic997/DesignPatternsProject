@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.io.Serializable;
 import java.util.Observable;
 
-public abstract class Shape extends Observable implements Comparable<Shape>, Serializable  {
+public abstract class Shape extends Observable implements Comparable<Shape>, Serializable, Prototype  {
 
 	/**
 	 * 
@@ -40,6 +40,6 @@ public abstract class Shape extends Observable implements Comparable<Shape>, Ser
 	public abstract void draw(Graphics g);
 	public abstract void selected(Graphics g);
 	public abstract boolean contains(int x, int y);
-	
+	public abstract Shape clone();
 	
 }

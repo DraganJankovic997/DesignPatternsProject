@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import controller.ShapeObserverController;
 import frame.AppFrame;
+import hexagon.Hexagon;
 import model.DrawingModel;
 import position.BackCommand;
 import position.BringToBackCommand;
@@ -102,7 +103,10 @@ public class ToCommand {
 				sh = p;
 				p.addObserver(obs);
 				if(className.equals("AddPoint")) finalCommand = new AddPoint(model, p);
-				else if (className.equals("DeletePoint")) finalCommand = new DeletePoint(model, p);
+				else if (className.equals("DeletePoint")) {
+					Point realPoint = (Point) check(p);
+					finalCommand = new DeletePoint(model, realPoint);
+				}
 				else if (className.equals("UpdatePoint")) {
 					Point realPoint = (Point) check(p);
 					finalCommand = new UpdatePoint(realPoint, p2);
@@ -117,7 +121,10 @@ public class ToCommand {
 				}
 				l.addObserver(obs);
 				if(className.equals("AddLine")) finalCommand = new AddLine(model, l);
-				else if(className.equals("DeleteLine")) finalCommand = new DeleteLine(model, l);
+				else if(className.equals("DeleteLine")) {
+					Line realLine = (Line) check(l);
+					finalCommand = new DeleteLine(model, realLine);
+				}
 				else if(className.equals("UpdateLine")) {
 					Line realLine = (Line) check(l);
 					finalCommand = new UpdateLine(realLine, l2);
@@ -132,7 +139,10 @@ public class ToCommand {
 				}
 				sq.addObserver(obs);
 				if(className.equals("AddSquare")) finalCommand = new AddSquare(model, sq);
-				else if(className.equals("DeleteSquare")) finalCommand = new DeleteSquare(model, sq);
+				else if(className.equals("DeleteSquare")) {
+					Square realSquare = (Square) check(sq);
+					finalCommand = new DeleteSquare(model, realSquare);
+				}
 				else if(className.equals("UpdateSquare")){
 					Square realSquare = (Square) check(sq);
 					finalCommand = new UpdateSquare(realSquare, sq2);
@@ -148,7 +158,10 @@ public class ToCommand {
 				}
 				r.addObserver(obs);
 				if(className.equals("AddRectangle")) finalCommand = new AddRectangle(model, r);
-				else if(className.equals("DeleteRectangle")) finalCommand = new DeleteRectangle(model, r);
+				else if(className.equals("DeleteRectangle")) {
+					Rectangle realRectangle = (Rectangle) check(r);
+					finalCommand = new DeleteRectangle(model, realRectangle);
+				}				
 				else if(className.equals("UpdateRectangle")) {
 					Rectangle realRectangle = (Rectangle) check(r);
 					finalCommand = new UpdateRectangle(realRectangle, r2);
@@ -164,7 +177,10 @@ public class ToCommand {
 				}
 				c.addObserver(obs);
 				if(className.equals("AddCircle")) finalCommand = new AddCircle(model, c);
-				else if(className.equals("DeleteCircle")) finalCommand = new DeleteCircle(model, c);
+				else if(className.equals("DeleteCircle")) {
+					Circle realCircle = (Circle) check(c);
+					finalCommand = new DeleteCircle(model, realCircle);
+				}
 				else if(className.equals("UpdateCircle")) {
 					Circle realCircle = (Circle) check(c);
 					finalCommand = new UpdateCircle(realCircle, c2);
@@ -179,7 +195,10 @@ public class ToCommand {
 				}
 				h.addObserver(obs);
 				if(className.equals("AddHexagonAdapter")) finalCommand = new AddHexagonAdapter(model, h);
-				else if(className.equals("DeleteHexagonAdapter")) finalCommand = new DeleteHexagonAdapter(model, h);
+				else if(className.equals("DeleteHexagonAdapter")) {
+					HexagonAdapter realHexagonAdapter = (HexagonAdapter) check(h);
+					finalCommand = new DeleteHexagonAdapter(model, realHexagonAdapter);
+				}
 				else if(className.equals("UpdateHexagonAdapter")) {
 					HexagonAdapter realHexagonAdapter = (HexagonAdapter) check(h);
 					finalCommand = new UpdateHexagonAdapter(realHexagonAdapter, h2);
@@ -269,11 +288,11 @@ public class ToCommand {
 		Color oc=parseColor(split[3].split("=")[1]);
 		Color ic=parseColor(split[4].split("=")[1]);
 		boolean s=Boolean.parseBoolean(split[5].split("=")[1]);
-		HexagonAdapter h=new HexagonAdapter(new hexagon.Hexagon(x, y, r), oc, ic);
+		Hexagon he = new Hexagon(x, y, r);
+		he.setBorderColor(oc);
+		he.setAreaColor(ic);
+		HexagonAdapter h=new HexagonAdapter(he, oc, ic);
 		h.setSelected(s);
-		System.out.println("X=" + x);
-		System.out.println("y=" + y);
-		System.out.println("r=" + r);
 		return h;
 	}
 	

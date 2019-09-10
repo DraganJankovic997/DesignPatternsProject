@@ -49,7 +49,61 @@ public class DrawingController implements Serializable {
 	}
 	
 	public void unselectAll() {
-		for(Shape huehue: model.getShapes()) huehue.setSelected(false);
+		for(Shape sh: model.getShapes()) {
+			if(sh.isSelected()) {
+				Command cmd = null;
+				if(sh instanceof Point) {
+					
+					Point o = (Point) sh;
+					Point n = new Point(o.getX(), o.getY(), o.getColor());
+					n.setSelected(false);
+					cmd = new UpdatePoint(o, n);
+					cmd.execute();
+					frame.getMenuController().addUndo(cmd, frame.getMenuController().toLog(cmd, true, o, n));
+					frame.getMenuController().LogCommand(cmd, true, (Point)o, n);
+				} else if (sh instanceof Line) {
+					Line o = (Line) sh;
+					Line n = new Line(o.getStartPoint(), o.getEndPoint(), o.getColor());
+					n.setSelected(false);
+					cmd = new UpdateLine(o, n);
+					cmd.execute();
+					frame.getMenuController().addUndo(cmd, frame.getMenuController().toLog(cmd, true, o, n));
+					frame.getMenuController().LogCommand(cmd, true, o, n);
+				} else if (sh instanceof Square) {
+					Square o = (Square) sh;
+					Square n = new Square(o.getUpperLeftPoint(), o.getWidth(), o.getColor(), o.getInnerColor()); 
+					n.setSelected(false);
+					cmd = new UpdateSquare(o, n);
+					cmd.execute();
+					frame.getMenuController().addUndo(cmd, frame.getMenuController().toLog(cmd, true, o, n));
+					frame.getMenuController().LogCommand(cmd, true, o, n);
+				} else if (sh instanceof Rectangle) {
+					Rectangle o = (Rectangle) sh;
+					Rectangle n = new Rectangle(o.getUpperLeftPoint(), o.getHeight(), o.getWidth(), o.getColor(), o.getInnerColor());
+					n.setSelected(false);
+					cmd = new UpdateRectangle(o, n);
+					cmd.execute();
+					frame.getMenuController().addUndo(cmd, frame.getMenuController().toLog(cmd, true, o, n));
+					frame.getMenuController().LogCommand(cmd, true, o, n);
+				} else if (sh instanceof Circle) {
+					Circle o = (Circle) sh;
+					Circle n = new Circle(o.getCenterPoint(), o.getRadius(), o.getColor(), o.getInnerColor());
+					n.setSelected(false);
+					cmd = new UpdateCircle(o, n);
+					cmd.execute();
+					frame.getMenuController().addUndo(cmd, frame.getMenuController().toLog(cmd, true, o, n));
+					frame.getMenuController().LogCommand(cmd, true, o, n);
+				} else if (sh instanceof HexagonAdapter) {
+					HexagonAdapter o = (HexagonAdapter) sh;
+					HexagonAdapter n = new HexagonAdapter(o.getHexagon(), o.getColor(), o.getInnerColor());
+					n.setSelected(false);
+					cmd = new UpdateHexagonAdapter(o, n);
+					cmd.execute();
+					frame.getMenuController().addUndo(cmd, frame.getMenuController().toLog(cmd, true, o, n));
+					frame.getMenuController().LogCommand(cmd, true, o, n);
+				}
+			}
+		}
 	}
 	
 	public void mouseClicked(MouseEvent e) {
