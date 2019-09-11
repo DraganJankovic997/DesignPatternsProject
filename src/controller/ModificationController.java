@@ -65,6 +65,7 @@ public class ModificationController implements Serializable {
 		if(delDialog == JOptionPane.YES_OPTION) {
 			Command cm = null;
 			for(Shape s : ls) {
+				s.setSelected(false);
 				if (s instanceof Point) cm = new DeletePoint(model, (Point)s);
 				else if(s instanceof Line) cm = new DeleteLine(model, (Line)s);
 				else if (s instanceof Square) cm = new DeleteSquare(model, (Square)s);
