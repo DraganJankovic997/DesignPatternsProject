@@ -120,7 +120,7 @@ public class HexagonAdapter extends SurfaceShape implements Movable, Prototype {
 
 	@Override
 	public Shape clone() {
-		Hexagon h = new Hexagon(this.getHexagon().getX(), this.getHexagon().getX(), this.getHexagon().getR());
+		Hexagon h = new Hexagon(this.getHexagon().getX(), this.getHexagon().getY(), this.getHexagon().getR());
 		HexagonAdapter ha = new HexagonAdapter(h, this.getColor(), this.getInnerColor());
 		ha.setSelected(this.isSelected());
 		return ha;
